@@ -10,10 +10,10 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
-      <a class="sidebar-nav-item">Paper</a>
+      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="/">Home</a>
+      <!-- <a class="sidebar-nav-item">Paper</a>
       <a class="sidebar-nav-item">Code</a>
-      <a class="sidebar-nav-item">Datasets</a>
+      <a class="sidebar-nav-item">Datasets</a> -->
       {% comment %}
         The code below dynamically generates a sidebar nav of pages with
         `layout: page` in the front-matter. See readme for usage.
@@ -37,4 +37,5 @@
   <link rel="stylesheet" href="../public/css/syntax.css">
   <link rel="stylesheet" href="../public/css/hyde.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 </div>
