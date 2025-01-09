@@ -10,13 +10,13 @@ relative_permalinks: false
 title:            Sophia
                   Alignment
 tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+description:      'SophiaAlignment aims to enhance the performance of language models across various domains by aligning the reasoning process with the perplexity metrics of language models through Process Supervision, Inference Framework, and Reinforcement Learning.'
 url:              http://hyde.getpoole.com
 baseurl:          /
 
 author:
   name:           'SophiaAlignment-organization'
-  url:            https://twitter.com/mdo
+  #url:            https://twitter.com/mdo
 
 paginate:         5
 
