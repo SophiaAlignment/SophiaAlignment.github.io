@@ -22,5 +22,5 @@ paginate:         5
 # Custom vars
 version:          0.0.1
 
-# github:
-#   repo:           https://github.com/poole/hyde
+github:
+  repo:           https://github.com/poole/hyde
