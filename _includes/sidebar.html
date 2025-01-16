@@ -2,8 +2,11 @@
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       <h1>
-        <a href="{{ site.baseurl }}">
-          {{ site.title }}
+        <a href="{{ site.baseurl }}" style="word-wrap: break-word;overflow-wrap: break-word;">
+          <span style="font-size: 22;">Sophia Alignment: </span>
+          <span style="font-size: 17;">
+            Model-Self-Defined Step Enhanced Intelligence Alignment
+          </span>
         </a>
       </h1>
       <p class="lead" style="line-height: 22px;font-size: 15px;">{{ site.description }}</p>
@@ -12,8 +15,7 @@
     <nav class="sidebar-nav">
       <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="/">Home</a>
       <a class="sidebar-nav-item{% if page.url == 'paper' %} active{% endif %}" href="/paper">Paper</a>
-      <a class="sidebar-nav-item{% if page.url == 'code' %} active{% endif %}" href="/code">Code</a>
-      <a class="sidebar-nav-item{% if page.url == 'datasets' %} active{% endif %}" href="/datasets">Datasets</a>
+      <a class="sidebar-nav-item{% if page.url == 'code' %} active{% endif %}" href="/release">Release</a>
       <a class="sidebar-nav-item{% if page.url == 'about' %} active{% endif %}" href="/about">About</a>
       <!-- {% comment %}
         The code below dynamically generates a sidebar nav of pages with
