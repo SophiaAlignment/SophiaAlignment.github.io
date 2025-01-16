@@ -9,7 +9,7 @@ relative_permalinks: false
 # Setup
 title:            Sophia
                   Alignment
-tagline:          'A Jekyll theme'
+tagline:          
 description:      'SophiaAlignment aims to enhance the performance of language models across various domains by aligning the reasoning process with the perplexity metrics of language models through Process Supervision, Inference Framework, and Reinforcement Learning.'
 url:              http://hyde.getpoole.com
 baseurl:          /
