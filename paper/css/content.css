@@ -7,6 +7,19 @@
     align-items: center;
 }
 
+.pic-box1{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.picinbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .title-little{
     width: 100%;
     text-align: left;
