@@ -54,7 +54,7 @@ sup{
 .maintitle{
     color: black;
     font-size: 35px;
-    line-height: 25px;
+    line-height: 36px;
     font-weight: 550;
     max-width: 75%;
     white-space: pre-wrap;
@@ -76,7 +76,8 @@ sup{
     justify-content: center;
     justify-items: center;
     align-items: center;
-    padding: 2%;
+    padding-top: 2%;
+    padding-bottom: 2%;
     word-wrap: break-word;
     min-height: 200px;
 }

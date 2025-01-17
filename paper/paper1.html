@@ -1,14 +1,11 @@
 ---
 layout: paper
-title: S<sup>2</sup>PRM
+title: SPRM
 ---
 <body class="theme-base-0c">
     <div class="mainContent">
         <div class="divcontent">
-            <div class="maintitle">
-            S<sup>2</sup>PRM: Providing Crucial Reward for LLM Reasoning
-                
-            by Soft-step Process Reward Model
+            <div class="maintitle">S<sup>2</sup>PRM: Providing Crucial Reward for LLM Reasoning by Soft-step Process Reward Model
             </div>
             <div class="papercontent">
                 <div class="text" style="font-weight: 550;text-align: center;">
@@ -71,11 +68,7 @@ title: S<sup>2</sup>PRM
                 ease of reimplementation, our checkpoints and all
                 data are available at <a class="link" href="#">GitHub Release</a>
                     
-               $$
-                \begin{align}
-                p\left(y_{i} \mid X, y_{<i}\right) & = \frac{\exp \left(\mathbf{l}_{i, y_{i}}\right)}{\sum_{y^{\prime} \in \mathcal{V}} \exp \left(\mathbf{l}_{i, y^{\prime}}\right)}
-                \end{align}
-                $$
+               
                 </div>
             </div>
         </div>
@@ -248,15 +241,124 @@ title: S<sup>2</sup>PRM
                     1. Preliminaries
                 </div>
                 <div class="text">
-                    Let ϕ denote the neural network function that maps the
-                    input sequence X and previously generated tokens y&lt;i =
-                    (y<sub>1</sub>, y<sub>2</sub>, . . . , y<sub>i</sub>−1) to the logits vector l<sub>i</sub> for predicting the
-                    next token y<sub>i</sub>
-                    , <strong>l</strong><sub>i</sub> ∈ R<sup>|V|</sup> where |V| is the vocabulary size:
+                    Let $\phi$ denote the neural network function that maps the
+                    input sequence X and previously generated tokens $y_{&lt;i}$ =
+                    ($y_1$, $y_2$, . . . , $y_i$−1) to the logits vector $l_i$ for predicting the
+                    next token $y_i$
+                    , $l_i$ ∈ R<sup>|V|</sup> where |V| is the vocabulary size:
                 </div>
                 <div class="text">
-                    <strong>l</strong><sub>i</sub> = ϕ (X, y&lt;i)
+                    \begin{equation}
+                    \mathbf{l}_i=\phi\left(X, y_{&lt;i}\right) \nonumber
+                    \end{equation}
 
+                </div>
+                <div class="text">
+                    Each element of $l_i$ represents the unnormalized score for a
+                    candidate token in the vocabulary. The probability of generating token $y_i$
+                    , given the input X and previously generated
+                    tokens y&lt;i, is computed using the softmax function:
+                    
+                    \begin{align}
+                    p\left(y_{i} \mid X, y_{&lt;i}\right) & = \frac{\exp \left(\mathbf{l}_{i, y_{i}}\right)}{\sum_{y^{\prime} \in \mathcal{V}} \exp \left(\mathbf{l}_{i, y^{\prime}}\right)}
+                    \end{align}
+
+                    where $l_{i,{y_i}}$
+                    is the logits value corresponding to token $y_i$ and
+                    V is the vocabulary.
+                </div>
+                <div class="text" style="width: 100%;">
+                    The predicted token $y_i$
+                    is determined by selecting the token
+                    with the highest probability:
+                    
+                </div>
+                <div>
+                    $$
+                    \begin{equation}
+                    y_i=\arg \max _{y_i} p\left(y_i \mid X, y_{&lt;i}\right) \nonumber
+                    \end{equation}
+                    $$
+                </div>
+                <div class="title-little">
+                    2. Soft Step Division
+                </div>
+                <div class="text" style="width: 100%;">
+                    The entire output sequence Y can be partitioned into K
+                    steps:
+                    $$
+                    \begin{equation}
+                    \mathbf{Y}=\bigcup_{k=1}^K s_k, \nonumber
+                    \end{equation}
+                    $$
+                </div>
+                <div class="text">
+                    where each step $s_k = \{ y_{r_{k-1}}, \dots, y_{r_k}\}$ is a contiguous subsequence of tokens, and rs are division points. To divide the
+                        answer into a step-by-step format, we follow the calculation
+                        method of model confidence (Hills & Anadkat, 2024) using
+                        the following equation:
+                        $$
+                        \begin{equation}
+                            \text{C}_{y_i} = \exp{(\log p(y_i | X, y_{&lt;i}))},
+                        \label{equ:confidence}
+                        \end{equation}
+                        $$
+                        which is numerically equal to the predicted token probability,
+                        where y&lt;i represents the preceding tokens. Tokens with
+                        low confidence values are identified as delimited tokens,
+                        representing the start of new step sequences. At the position
+                        of each delimited token, we then perform N rollouts to
+                        assess the quality of the current token sequence.
+
+                </div>
+                <div class="text">
+                    We define a confidence threshold $\tau$ to select these delimited
+                    tokens with low confidence. Specifically, for a dataset, we
+                    first compute the confidence value for each token of the
+                    answer part in the samples. The threshold $\tau$ is determined
+                    as a specific percentile of the confidence distribution across
+                    the dataset, ensuring an average of K − 1 steps for each
+                    sample divided by delimiter tokens. With the last step at the
+                    end of the answer, each sample contains an average of K
+                    steps.
+
+                </div>
+                <div class="title-little">
+                    3. Reward Estimation
+                </div>
+                <div class="text">
+                    For each step, we estimate the quality of individual steps in
+                    an answer following the heuristic rollout methods proposed
+                    by (Wang et al., 2024).
+                </div>
+                <div class="text">
+                    During the rollout phase, we generate $N$ reasoning processes starting from step $s_i$, denoted as $\left\{s_i, T_j\right\}^N_{j=1}$, where $T_j$ is the rollouted $j$-th solution with the previous sequence $s_i$.
+                    Then, we estimate the reward of this step based on the correctness of all decoded solutions. We use hard estimation (HE) to estimate the reward for step $s_k$, which shows whether the current inference sequence can reach the correct answer. For example, in the Code domain, correct means the generated code can pass all the test cases; in the Mathematics domain, it means the final answer matches the ground truth:
+
+
+                    \begin{equation}
+                    % y_{s_k}^{H E}= \mathbb I \left(\exists o_j \in O \mid o_j \text { is correct }\right)
+                    y_{s_k}^{HE}=\left\{
+                    \begin{aligned}
+                    1 & & \exists t_j \in T, t_j \text { is correct } \\
+                    0 & &, \mathrm{Otherwise} \\
+                    \end{aligned}
+                    \right.
+                    \label{eqa:HE}
+                    \end{equation}
+                </div>
+                <div class="title-little">
+                    4. PRM Guided Inference
+                </div>
+                <div class="text">
+                    The PGI evaluation strategy leverages the well-trained PRM to enhance token selection during decoding. Specifically, when the model encounters a low-confidence position in the decoding sequence, it triggers the PRM to evaluate the top $M$ candidate tokens $y_t^*=\{y_1',y_2',\dots,y_M'\}$.
+                
+                    Among these candidates, the PRM selects the token it considers the best based on its learned reward estimation mechanism: 
+                  
+                    \begin{equation}
+                    y_t=\arg \max _{y_k' \in y_t^*} R\left(X, y_{&lt;t},y_k'\right),
+                    \end{equation}
+                    , where $y_t$ is the token selected as the optimal choice for decoding position $t$, and $R(*)$ represents the PRM rewarding process.
                 </div>
             </div>
         </div>
@@ -347,6 +449,21 @@ title: S<sup>2</sup>PRM
                 <div class="text">
                     BoN results for the Code domain, we test S2PRMD and a Code-ORM (ORM-D) on (a) DeepSeek-SFT generated LeetCoTE BoN candidates; (b) DeepSeek-SFT generated LiveCodeBench BoN candidates.
 
+                </div>
+                <div class="title-little">
+                    2. PRM Guided Inference Results
+
+                </div>
+                <div class="text">
+                    We report PGI results in Table 1 and Table 2. In the Mathematics domain, S2PRM has consistently shown an ability
+                    to enhance the reasoning capacity of the inference models,
+                    while ER-PRM and Math-Shepherd do not have a positive
+                    effect on the reasoning process on the GSM8k testset. The
+                    results suggest that the judgment accuracy of S2PRM surpasses that of other PRMs. Especially on GSM8k, where
+                    the performance of greedy search is already well, its performance further demonstrates the accuracy of the token-level
+                    judgment. In the Code domain, S2PRM has also achieved
+                    results surpassing those of greedy search by guiding the
+                    reasoning model with accurate judgment.
                 </div>
             </div>
         </div>
