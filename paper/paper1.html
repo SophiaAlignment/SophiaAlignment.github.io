@@ -4,6 +4,44 @@ title: S2PRM
 ---
 <body class="theme-base-0c">
     <div class="mainContent">
+        <div class="divcontent">
+            <div class="title">
+                S<sup>2</sup>PRM: Providing Crucial Reward for LLM Reasoning by Soft-step Process Reward Model
+            </div>
+            <div class="papercontent">
+                <div class="text" style="font-weight: 550;text-align: center;">
+                    Yuliang Liu<sup>1,9,∗</sup> 
+                    , Junjie Lu<sup>2,∗</sup>
+                    , Zhaoling Chen<sup>1</sup>
+                    , Chaofeng Qu<sup>4</sup>
+                    ,
+                    
+                </div>
+                <div class="text" style="font-weight: 550;text-align: center;">
+                    Zefan Cai<sup>5</sup>
+                    , JK Liu, Chonghan Liu,
+                </div>
+                <div class="text" style="font-weight: 550;text-align: center;">
+                    Yunhui Xia<sup>6</sup>
+                    ,
+                    Chuheng Zhang<sup>7,#</sup>, Wei Shen<sup>8,#</sup>, Jiang Bian<sup>7</sup>
+                    , Zhouhan Lin<sup>3,9,#</sup>
+                </div>
+                <div class="text">
+                    <sup>1</sup>Nanjing University <sup>2</sup>University of Technology Sydney <sup>3</sup>Shanghai Jiaotong University
+                </div>
+                <div class="text">
+                    NCEPU <sup>5</sup>UW-Madison <sup>6</sup>Baidu Inc.
+                </div>
+                <div class="text">
+                    MSRA <sup>8</sup>ByteDance-Seed <sup>9</sup>Shanghai Innovation Institute
+                </div>
+                <div class="text">
+                    {liuyl03181, lux17999}@gmail.com
+                </div>
+                
+            </div>
+        </div>
         
         <div class="divcontent">
             <div class="title">
@@ -38,6 +76,33 @@ title: S2PRM
                 Method Overview
             </div>
             <div class="papercontent">
+                <img src="../picture/figure-method-main_00.png" style="width: 100%;height: auto;">
+                <div class="text">
+                    (Method overview. a) S2PRM Training Data Construction Pipeline. ①: Sampling from the dataset of a
+                    certain domain and getting confidence and samples for the training dataset; ②: Gathering the confidence distribution
+                    of all samples and getting threshold that divides the distribution into steps of 2% of the token numbers; ③: Dividing
+                    reasoning steps by threshold and labeling steps by rollout. b) the difference between hard and soft step division.
+                    Hard-step corresponds to dividing the reasoning process by pre-defined symbols (e.g., the line break in the figure),
+                    while soft-steps are determined by inference model judgment. We find that the model is likely to perform soft step
+                    segmentation within mathematical expressions, select variables or pronouns, and determine the final answer. We
+                    annotated the confidence score during model inference at division positions, where lower confidence indicates that
+                    the model finds it hard to decide.
+                </div>
+                <img src="../picture/figure-method-PGI_00.png" style="width: 100%;height: auto;">
+                <div class="text">
+                    We illustrate PGI by a simple example, the green token denotes the selected tokens, whereas the gray
+                    token indicate the tokens that were not selected. The question is 3 * ( 1 + 1 ) = ?, and the output should be 6; in
+                    this case, the task model exhibits low confidence (where Cy < τ ) when calculating the answer of 1 + 1, and then
+                    determine which number to plus with 3, PRM should select the best token it judges to get the correct final answer.
+                </div>
+            </div>
+        </div>
+
+        <div class="divcontent">
+            <div class="title">
+                Introduction
+            </div>
+            <div class="papercontent">
                 <div class="text">
                 Large language models (LLMs) have shown exceptional
                 performance across various tasks. Nonetheless, even stateof-the-art LLMs encounter difficulties when addressing complex, multi-step reasoning problems, such as mathematical
@@ -50,23 +115,116 @@ title: S2PRM
                 </div>
             </div>
             <div class="papercontent">
-                <embed src="../picture/figure-intro-main.pdf" style="width: 80%;height: 400px;">
+                <img src="../picture/figure-intro-main_00.png" style="width: 100%;height: auto;">
                     <div class="text">
                     Figure 1: Suggested by (Kahneman, 2011), the human thinking process requires different reasoning costs depending on
                     task difficulty. Simple problems can be quickly resolved,
                     while complex problems require more effort at certain decision points, which we term <strong>decision point</strong>  in the reasoning
                     process.
                     </div>
-            </div>
-        </div>
-        <div class="divcontent">
-            <div class="title">
-                Introduction
-            </div>
-            <div class="papercontent">
-                <div class="text">
+                    <Div class="text">
+                        There are two existing reward models: the outcomesupervised reward model (ORM) and the process-supervised
+                    reward model (PRM). ORM assigns a score to the full LLM
+                    output. In contrast, since Uesato et al. (2022) found that the
+                    correctness of the intermediate reasoning steps is essential in
+                    LLM for complex reasoning tasks, the evolution of reward
+                    models has become increasingly fine-grained, namely the
+                    Process-supervised Reward Model (PRM), solving mathematical problems by PRM has become an essential approach.
+                    In Ma et al. (2023b); Luo et al. (2024), the score of PRM
+                    represents the correctness of the current reasoning step, and
+                    in Wang et al. (2024), they indicate whether a reasoning step
+                    is a potential path leading to the correct answer. Despite the
+                    inherent differences between these approaches, both have
+                    demonstrated exemplary performance as verifiers (Xiong
+                    et al., 2024; Setlur et al., 2024) and value functions in reinforcement learning (Zhang et al., 2024a; Wang et al., 2024).
+                    
+                    </Div>
+                    <div class="text">
+                        Existing PRMs typically divide a model’s response into
+                    multiple reasoning steps using a pre-defined symbol such as
+                    ”new line break” or a fixed number of tokens. However, thisapproach has several limitations: 1) it fails to account for the
+                    mismatch between decision points in reasoning and markers
+                    commonly used in writing, such as line breaks or sentenceending punctuation; and 2) it assumes that every sentence
+                    ending with a line break involves the exact reasoning costs,
+                    without considering the specific content or function of each
+                    part.
+                    
+                    </div>
+                    <div class="text"> 
+                        To address these issues, we aim to find a more suitable
+                        step division method to improve both the efficiency and
+                        performance of PRMs. As suggested by (Kahneman, 2011),
+                        the cognitive cost required for reasoning varies depending
+                        on the task’s difficulty. A statistical analysis of common
+                        errors in reasoning tasks conducted by (Roy & Roth, 2016)
+                        revealed that many errors arise from incorrect numerical
+                        calculations or the misapplication of words, such as verb
+                        misuse. This indicates that certain words or positions in the
+                        reasoning process require more attention.
+                    </div>
+                    <div class="text">
+                        Additionally, we find that the inference model can determine
+                        the optimal division of the inference process itself. Accordingly, we propose a framework to construct a PRM training
+                        dataset using a model-divided inference process, with the
+                        resulting PRM named the Soft-step Process Reward Model
+                        (S2PRM). The term ”soft-step” refers to using a non-fixed
+                        segmentation strategy, unlike the traditional ”hard-step” approach with a fixed one.
 
-                </div>
+                    </div>
+                    <div class="text">
+                        To assess the effectiveness of S2PRM, we provide a Mathematics version implementation, evaluated on
+                        GSM8k (Cobbe et al., 2021) and MATH (Hendrycks et al.,
+                        2021) dataset and a Code version implementation. To train
+                        the Code version PRM, we collect a dataset containing 1940
+                        problems from LeetCode Problems, with the corresponding solutions and test cases, which is named LeetCoTE
+                        (LeetCode Train & Eval). The training dataset for S2PRM
+                        for the Code domain is generated by a model fine-tuned
+                        on the LeetCoTE training set and evaluated on the LeetCoTE test set and Livecodebench (Jain et al., 2024). In the
+                        Mathematics domain, S2PRM demonstrates the best performance compared to the previous open-sourced works, and
+                        in the Code domain, S2PRM shows superior performance
+                        and robustness compared to the Ourcome Reward Model
+                        (ORM).
+                        
+                    </div>
+                    <div class="text">
+                        Furthermore, since the most widely used PRM step division
+                        method in the past was based on a fixed symbol, which
+                        only involve judgment at the sentence level, the works using
+                        PRM to assist model inference have to be focused on the
+                        sentence level, leading to limitations in generalization and
+                        applicability. In contrast, S2PRM can be regarded as an upsampled token-level PRM, which provides strong judgment
+                        capabilities at the token level. To expand the applicability of
+                        PRM, we propose PRM Guided Inference (PGI), which introduces PRM directly to participate in the model inference
+                        process. In the PGI scenario, S2PRM achieves improvement by 2.43 compared to greedy decoding on the GSM8k dataset and achieves 3.60 improvement on the MATH500
+                        dataset in the Mathematics domain. On the two test sets in
+                        the code domain, it improved by 1.72 and 2.00, respectively.
+                    </div>
+                    <div class="text">
+                        Our main contributions are as follows:
+                    </div>
+                    <div class="text">
+                        1. We propose a new PRM training data construction
+                        method with implementation in the Mathematics and
+                        Code domains, respectively.
+                    </div>
+                    <div class="text">
+                        2. We propose a new PRM usage during model inference,
+                        PRM Guided Inference (PGI), effectively introducing
+                        PRM participating directly into the LLM inference
+                        process.
+                    </div>
+                    <div class="text">
+                        3. Our results show that S2PRM is currently the state-ofthe-art approach. In addition to the results, we also
+                        analyze and explore several properties of S2PRM and
+                        its training data.
+
+                    </div>
+                    <div class="text">
+                        4. We have accelerated the process using state-of-theart techniques during training and inference and have
+                        collected a large number of competition-level coding
+                        problems from LeetCode with test cases (LeetCoTE)
+                        and an easy-to-use execute sandbox.
+                    </div>
             </div>
 
             <div class="title">
@@ -74,7 +232,22 @@ title: S2PRM
             </div>
             <div class="papercontent">
                 <div class="text">
-
+                    In this section, we first introduce the preliminaries of the language model inference process, then illustrate our method
+                    that divides the reasoning process and estimates reward.
+                    Finally, we illustrate the proposed PRM-guided inference.
+                </div>
+                <div class="title-little">
+                    1. Preliminaries
+                </div>
+                <div class="text">
+                    Let ϕ denote the neural network function that maps the
+                    input sequence X and previously generated tokens y&lt;i =
+                    (y1, y2, . . . , yi−1) to the logits vector li for predicting the
+                    next token yi
+                    , <strong>l</strong><sub>i</sub> ∈ R<sup>|V|</sup> where |V| is the vocabulary size:
+                </div>
+                <div class="text">
+                    <strong>l</strong><sub>i</sub> = ϕ (X, y&lt;i)
                 </div>
             </div>
         </div>

@@ -3,13 +3,12 @@
     <div class="sidebar-about">
       <h1>
         <a href="{{ site.baseurl }}" style="word-wrap: break-word;overflow-wrap: break-word;">
-          <div>Sophia Alignment: </div>
-          <div style="font-size: 20px;line-height: 27px;font-size: 500;">
-            Model-Self-Defined Step Enhanced Intelligence Alignment
-          </div>
+      Sophia Alignment
         </a>
       </h1>
-      <p class="lead" style="line-height: 22px;font-size: 15px;">{{ site.description }}</p>
+      <p class="lead" style="line-height: 22px;font-size: 15px;">
+        Model-Self-Defined Step Enhanced Intelligence Alignment
+      </p>
     </div>
 
     <nav class="sidebar-nav">
@@ -21,25 +20,12 @@
         <ul class="sidebar-nav-submenu" id="paper-submenu" style="display: none;">
           <li><a class="sidebar-nav-item{% if page.url == '/paper/paper1' %} active{% endif %}" href="/paper/paper1">S2PRM</a></li>
           <!-- <li><a class="sidebar-nav-item{% if page.url == '/paper/paper2' %} active{% endif %}" href="/paper/paper2">Paper 2</a></li> -->
-          <!-- 添加更多子链接 -->
+
         </ul>
       </div>
       <!-- <a class="sidebar-nav-item{% if page.url == 'paper' %} active{% endif %}" href="/paper/paper1">Paper</a> -->
       <a class="sidebar-nav-item{% if page.url == 'code' %} active{% endif %}" href="/release">Release</a>
       <a class="sidebar-nav-item{% if page.url == 'about' %} active{% endif %}" href="/about">About</a>
-      <!-- {% comment %}
-        The code below dynamically generates a sidebar nav of pages with
-        `layout: page` in the front-matter. See readme for usage.
-      {% endcomment %}
-
-      {% assign pages_list = site.pages %}
-      {% for node in pages_list %}
-        {% if node.title != null %}
-          {% if node.layout == "page" %}
-            <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
-          {% endif %}
-        {% endif %}
-      {% endfor %} -->
       <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
     </nav>
 
@@ -106,8 +92,4 @@
       }
     });
   };
-  
-  // 注意：上面的window.onload函数中的URL匹配逻辑可能不准确，因为links[i]没有pathname属性。
-  // 你可能需要使用links[i].href.includes(window.location.pathname)来代替，但这样可能会匹配到不完整的路径。
-  // 一个更精确的方法是解析URL并比较路径的各个部分。
   </script>
