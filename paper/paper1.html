@@ -7,7 +7,31 @@ title: S2PRM
         <div class="divcontent">
             <div class="maintitle">
                 S2PRM: Providing Crucial Reward for LLM Reasoning by Soft-step Process Reward Model
-                $y = \sin(\pi + \theta)$
+                \begin{table}[htbp]
+                \centering
+                \begin{tabular}{ccc c}  % 去掉竖线，使用适当的对齐方式
+                \toprule
+                \textbf{Base Model} & \textbf{Train} & \textbf{Test} & \textbf{Bo64 / PGI} \\ 
+                \midrule
+                % \multirow{4}{*}{Llama}    & M   & GSM8k        & 90.45 / 79.53 \\ 
+                %                           & M+C & GSM8k        & 89.61 / \yuliang{79.53-search} \\ 
+                %                           & M   & MATH500      & 41.20 / 28.60 \\ 
+                %                           & M+C & MATH500      & 41.40 / \yuliang{28.00-search} \\ 
+                % \midrule
+                \multirow{4}{*}{Mistral}  & M   & GSM8k        & 85.82 / 77.33 \\ 
+                                          & M+C & GSM8k        & 86.35 / 77.79  \\ 
+                                          & M   & MATH500      & 34.80 / 26.80 \\ 
+                                          & M+C & MATH500      & 35.40 / 29.00   \\ 
+                \midrule
+                \multirow{4}{*}{Deepseek} & C   & LeetCoTE     & 37.71 / 28.00 \\ 
+                                          & C+M & LeetCoTE     & 38.86  / \yuliang{ing-1} \\ 
+                                          & C   & LCB          & 25.53 / 19.92 \\ 
+                                          & C+M & LCB          & \yuliang{24.96} / 20.33 \\ 
+                \bottomrule
+                \end{tabular}
+                \caption{This table presents the test results of whether the PRMs are trained with a Mixed training dataset. When the base model is Llama or Mistral, the \textit{M+C} training data consists of the corresponding MetaMATH model-generated Mathematics dataset and full Code training dataset. When the base model is Deepseek, the \textit{M+C} training data includes all of the Code dataset and an equal amount of randomly sampled Mathematics training data. The Results column shows the Best of 64 test results.}
+                \label{tab:generalization_mix}
+                \end{table}
             </div>
             <div class="title">
                 Abstract
