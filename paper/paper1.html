@@ -1,0 +1,89 @@
+---
+layout: paper
+title: S2PRM
+---
+<body class="theme-base-0c">
+    <div class="mainContent">
+        <div class="divcontent">
+            <div class="title">
+                Abstract
+            </div>
+            <div class="papercontent">
+                <div class="text">
+                Process Reward Models (PRMs) have emerged as
+                an effective method to enhance the multi-step reasoning abilities of large language models (LLMs).
+                Existing PRMs typically divide the response into
+                multiple reasoning steps using pre-defined placeholder tokens. However, this approach ignores
+                that the true decision points are usually not associated with specific words or markers in text.
+                Accordingly, we propose a model-defined reasoning step dividing method, which contrasts with
+                human-defined hard division strategies, with the
+                trained PRM named S2PRM (Soft-step Process
+                Reward Model) This approach not only enables
+                precise process rewards at model-critical reasoning positions but also improves sample efficiency
+                and reduces PRMs’ training costs. Furthermore,
+                this method is low-cost and can easily be extended
+                to other reasoning tasks, such as code generation.
+                Our experimental results demonstrate that our
+                model achieves state-of-the-art Best-of-N performance. Additionally, we provide a comprehensive
+                analysis and case study on both the performance
+                and generalization capability of our method. For
+                ease of reimplementation, our checkpoints and all
+                data are available at <a class="link" href="#">GitHub Release</a>
+                </div>
+            </div>
+        </div>
+        <div class="divcontent">
+            <div class="title">
+                Method Overview
+            </div>
+            <div class="papercontent">
+                <div class="text">
+                Large language models (LLMs) have shown exceptional
+                performance across various tasks. Nonetheless, even stateof-the-art LLMs encounter difficulties when addressing complex, multi-step reasoning problems, such as mathematical
+                reasoning and code reasoning tasks (Huang et al., 2024;
+                Tyen et al., 2024; Mirzadeh et al., 2024). One effective
+                method involves training reward models to judge the correctness of model completions. With a good reward model,we can adopt reinforcement learning from the human feedback (RLHF) method, rejection sampling method, or Best
+                of N method to further enhance the precision and reliability
+                of the LLM outputs (Shao et al., 2024; Sessa et al., 2024;
+                Gao et al., 2024).
+                </div>
+            </div>
+            <div class="papercontent">
+                <embed src="../picture/figure-intro-main.pdf" style="width: 80%;height: 400px;">
+                    <div class="text">
+                    Figure 1: Suggested by (Kahneman, 2011), the human thinking process requires different reasoning costs depending on
+                    task difficulty. Simple problems can be quickly resolved,
+                    while complex problems require more effort at certain decision points, which we term <strong>decision point</strong>  in the reasoning
+                    process.
+                    </div>
+            </div>
+        </div>
+        <div class="divcontent">
+            <div class="title">
+                Introduction
+            </div>
+            <div class="papercontent">
+                <div class="text">
+
+                </div>
+            </div>
+
+            <div class="title">
+                Method
+            </div>
+            <div class="papercontent">
+                <div class="text">
+
+                </div>
+            </div>
+        </div>
+        <div class="divcontent">
+            <div class="title">
+                Experiment Results
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+<link rel="stylesheet" href="../css/content.css">

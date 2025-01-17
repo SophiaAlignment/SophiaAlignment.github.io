@@ -3,10 +3,10 @@
     <div class="sidebar-about">
       <h1>
         <a href="{{ site.baseurl }}" style="word-wrap: break-word;overflow-wrap: break-word;">
-          <span style="font-size: 30px;">Sophia Alignment: </span>
-          <span style="font-size: 24px;">
+          <div style="font-size: 30px;line-height: 36px;">Sophia Alignment: </div>
+          <div style="font-size: 20px;line-height: 27px;">
             Model-Self-Defined Step Enhanced Intelligence Alignment
-          </span>
+          </div>
         </a>
       </h1>
       <p class="lead" style="line-height: 22px;font-size: 15px;">{{ site.description }}</p>
@@ -14,7 +14,17 @@
 
     <nav class="sidebar-nav">
       <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="/">Home</a>
-      <a class="sidebar-nav-item{% if page.url == 'paper' %} active{% endif %}" href="/paper">Paper</a>
+      <div class="sidebar-nav-dropdown">
+        <a class="sidebar-nav-item sidebar-nav-dropdown-toggle" href="#" onclick="toggleDropdown(event, 'paper-submenu')">
+          Paper <span class="caret"></span>
+        </a>
+        <ul class="sidebar-nav-submenu" id="paper-submenu" style="display: none;">
+          <li><a class="sidebar-nav-item{% if page.url == '/paper/paper1' %} active{% endif %}" href="/paper/paper1">S2PRM</a></li>
+          <!-- <li><a class="sidebar-nav-item{% if page.url == '/paper/paper2' %} active{% endif %}" href="/paper/paper2">Paper 2</a></li> -->
+          <!-- 添加更多子链接 -->
+        </ul>
+      </div>
+      <!-- <a class="sidebar-nav-item{% if page.url == 'paper' %} active{% endif %}" href="/paper/paper1">Paper</a> -->
       <a class="sidebar-nav-item{% if page.url == 'code' %} active{% endif %}" href="/release">Release</a>
       <a class="sidebar-nav-item{% if page.url == 'about' %} active{% endif %}" href="/about">About</a>
       <!-- {% comment %}
@@ -42,3 +52,62 @@
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
 </div>
+
+<style>
+  .sidebar-nav-dropdown-toggle .caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}
+
+.sidebar-nav-submenu {
+  list-style: none; /* 移除列表的默认样式 */
+  padding-left: 20px; /* 子菜单的缩进 */
+}
+</style>
+
+<script>
+  function toggleDropdown(event, submenuId) {
+    event.preventDefault(); // 阻止链接的默认行为（即跳转）
+    var submenu = document.getElementById(submenuId);
+    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    
+    // 可选：更新箭头方向（如果需要的话）
+    var toggleElement = event.currentTarget;
+    var caret = toggleElement.querySelector('.caret');
+    if (submenu.style.display === 'block') {
+      caret.style.transform = 'rotate(180deg)'; // 旋转箭头向下
+    } else {
+      caret.style.transform = 'rotate(0deg)'; // 旋转箭头向上（或保持默认状态）
+    }
+  }
+  
+  // 初始化时检查当前页面URL，并自动展开相应的子菜单（如果需要的话）
+  window.onload = function() {
+    var currentPagePath = window.location.pathname.replace(/^\//, ''); // 移除URL开头的斜杠
+    var submenuElements = document.querySelectorAll('.sidebar-nav-submenu');
+    submenuElements.forEach(function(submenu) {
+      var links = submenu.getElementsByTagName('a');
+      for (var i = 0; i < links.length; i++) {
+        if (links[i].pathname.includes(currentPagePath)) { // 注意：这里需要调整逻辑以正确匹配URL
+          submenu.style.display = 'block';
+          var toggleElement = document.querySelector('[onclick*="\\\'' + submenu.id + '\\\'"]'); // 查找对应的展开/收起元素（这里使用了一个不太优雅的选择器）
+          if (toggleElement) {
+            var caret = toggleElement.querySelector('.caret');
+            caret.style.transform = 'rotate(180deg)'; // 旋转箭头
+          }
+          break;
+        }
+      }
+    });
+  };
+  
+  // 注意：上面的window.onload函数中的URL匹配逻辑可能不准确，因为links[i]没有pathname属性。
+  // 你可能需要使用links[i].href.includes(window.location.pathname)来代替，但这样可能会匹配到不完整的路径。
+  // 一个更精确的方法是解析URL并比较路径的各个部分。
+  </script>

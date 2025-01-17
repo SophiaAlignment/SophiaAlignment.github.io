@@ -1,0 +1,51 @@
+.paper{
+    display: flex;
+    width: 100%;
+}
+
+.sidebar-container {
+    width: 60px; /* 初始宽度只够容纳按钮 */
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s ease; /* 平滑的过渡效果 */
+    z-index: 999;
+    background-color: #333;
+}
+ 
+.sidebar-container.expanded {
+    width: 250px; /* 展开后的宽度 */
+}
+ 
+.toggle-button {
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px 0 0 5px; /* 圆角效果，只针对左侧 */
+}
+ 
+.sidebar-content {
+    background-color: #333;
+    color: white;
+    width: 100%; /* 侧边栏内容宽度随容器变化 */
+    height: calc(100vh - 60px); /* 减去按钮的高度 */
+    overflow-y: auto; /* 允许垂直滚动 */
+    display: none; /* 初始隐藏 */
+}
+ 
+.sidebar-container.expanded .sidebar-content {
+    display: block; /* 展开后显示 */
+}
+ 
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-right: 60px; /* 为侧边栏容器留出空间 */
+}

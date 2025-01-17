@@ -1,0 +1,47 @@
+.mainContent{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.link{
+
+}
+
+.papercontent{
+    color: black;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    color: black;
+    font-size: 25px;
+    line-height: 35px;
+    font-weight: 550;
+}
+
+.divcontent{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    padding: 2%;
+    word-wrap: break-word;
+}
+
+.divcontent:nth-child(even) {
+    background-color: #f0f0f0; /* 灰色 */
+  }
+ 
+  .divcontent:nth-child(odd) {
+    background-color: #ffffff; /* 白色 */
+  }
