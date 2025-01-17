@@ -2,10 +2,6 @@
 markdown:         kramdown
 highlighter:      pygments
 
-kramdown:
-  math_engine: null
-
-
 # Permalinks
 permalink:        pretty
 relative_permalinks: false
