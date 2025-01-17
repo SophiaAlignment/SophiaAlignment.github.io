@@ -26,3 +26,6 @@ github:
 
 plugins:
   - jekyll-paginate
+
+kramdown:
+  math_engine: null
