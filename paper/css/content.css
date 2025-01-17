@@ -8,9 +8,10 @@
 }
 
 .pic-box1{
+    width: 100%;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    
     justify-content: space-evenly;
 }
 
