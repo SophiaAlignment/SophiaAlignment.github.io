@@ -71,8 +71,13 @@ title: S2PRM
                 ease of reimplementation, our checkpoints and all
                 data are available at <a class="link" href="#">GitHub Release</a>
                     
-                $$
-                p\left(y_{i} \mid X, y_{<i}\right)=\frac{\exp \left(\mathbf{l}_{i, y_{i}}\right)}{\sum_{y^{\prime} \in \mathcal{V}} \exp \left(\mathbf{l}_{i, y^{\prime}}\right)}
+               $$
+                \begin{align*}
+                y = y(x,t) &= A e^{i\theta} \\
+                &= A (\cos \theta + i \sin \theta) \\
+                &= A (\cos(kx - \omega t) + i \sin(kx - \omega t)) \\
+                &= A\cos \frac{2\pi}{\lambda} (x - v t) + i A\sin \frac{2\pi}{\lambda} (x - v t)
+                \end{align*}
                 $$
                 </div>
             </div>
