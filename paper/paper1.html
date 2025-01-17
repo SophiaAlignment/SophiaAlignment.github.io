@@ -376,17 +376,17 @@ title: SPRM
                     Figure 5.
                 </div>
                 <div class="text">
-                    In the Mathematics domain, we find that S2PRM-L performs best across Figure 4a, 4b and 4d. However, the performance of S2PRM-M is generally the worst among all
+                    In the Mathematics domain, we find that S<sup>2</sup>PRM-L performs best across Figure 4a, 4b and 4d. However, the performance of S<sup>2</sup>PRM-M is generally the worst among all
                     the experiments, and we attribute this to the following factors: the <strong>base model</strong>, the <strong>data sources for construction</strong>,
                     and the <strong>costs and models for construction</strong>. 1) For the
-                    base model, S2PRM-M uses Mistral, which is less capable
+                    base model, S<sup>2</sup>PRM-M uses Mistral, which is less capable
                     than Llama, resulting in poorer performance compared to
-                    ER-PRM. 2) For the data sources, S2PRM only utilizes the
+                    ER-PRM. 2) For the data sources, S<sup>2</sup>PRM only utilizes the
                     GSM8k and MATH training sets during training data construction, while both ER-PRM and Math-Shepherd use the
                     MATH test set (without using MATH500), which results
                     in our performance being inferior to theirs on MATH500.
                     3) For the costs and models used in construction, the data
-                    construction costs for S2PRM is approximately 60% of that
+                    construction costs for S<sup>2</sup>PRM is approximately 60% of that
                     for the other two methods and only used a single construct
                     model, we will discuss our sample efficiency feature in
                     the next section. Additionally, Math-Shepherd performs
@@ -397,8 +397,8 @@ title: SPRM
                     better performance.
                 </div>
                 <div class="text">
-                    In the two datasets of the Code domain, S2PRM-D demonstrates better judging capabilities, and as the number of
-                    candidates increases, the robustness of S2PRM-D is superior to that of the ORM.
+                    In the two datasets of the Code domain, S<sup>2</sup>PRM-D demonstrates better judging capabilities, and as the number of
+                    candidates increases, the robustness of S<sup>2</sup>PRM-D is superior to that of the ORM.
                 </div>
                 <div class="pic-box1">
                     <div class="picinbox">
@@ -419,8 +419,8 @@ title: SPRM
                     </div>
                 </div>
                 <div class="text">
-                    BoN results for the Mathematics domain, for S2PRM, we use the Mistral generated training dataset to align with
-                    ER-PRM to train Mistral (S2PRM-M) and Llama (S2PRM-L) and test all the PRMs on (a) MetaMath-Llama generated
+                    BoN results for the Mathematics domain, for S<sup>2</sup>PRM, we use the Mistral generated training dataset to align with
+                    ER-PRM to train Mistral (S<sup>2</sup>PRM-M) and Llama (S<sup>2</sup>PRM-L) and test all the PRMs on (a) MetaMath-Llama generated
                     GSM8k BoN candidates; (b) MetaMath-Mistral generated GSM8k BoN candidates; (c) MetaMath-Llama generated
                     MATH500 BoN candidates, and (d) MetaMath-Mistral generated MATH500 BoN candidates.
 
@@ -428,7 +428,7 @@ title: SPRM
                 <img src="../picture/table1.png" width="90%">
                 <div class="text">
                     Table 1: Mathematics domain PRM Guided Inference results. Acc@1 refers to the inference model’s greedy search
-                    performance. S2PRM-L represents Mathematics PRM based on Llama, S2PRM-M represents Mathematics PRM trained
+                    performance. S<sup>2</sup>PRM-L represents Mathematics PRM based on Llama, S<sup>2</sup>PRM-M represents Mathematics PRM trained
                     based on Mistral.
                 </div>
                 <img src="../picture/table2.png" width="40%">
@@ -455,13 +455,13 @@ title: SPRM
 
                 </div>
                 <div class="text">
-                    We report PGI results in Table 1 and Table 2. In the Mathematics domain, S2PRM has consistently shown an ability
+                    We report PGI results in Table 1 and Table 2. In the Mathematics domain, S<sup>2</sup>PRM has consistently shown an ability
                     to enhance the reasoning capacity of the inference models,
                     while ER-PRM and Math-Shepherd do not have a positive
                     effect on the reasoning process on the GSM8k testset. The
-                    results suggest that the judgment accuracy of S2PRM surpasses that of other PRMs. Especially on GSM8k, where
+                    results suggest that the judgment accuracy of S<sup>2</sup>PRM surpasses that of other PRMs. Especially on GSM8k, where
                     the performance of greedy search is already well, its performance further demonstrates the accuracy of the token-level
-                    judgment. In the Code domain, S2PRM has also achieved
+                    judgment. In the Code domain, S<sup>2</sup>PRM has also achieved
                     results surpassing those of greedy search by guiding the
                     reasoning model with accurate judgment.
                 </div>
