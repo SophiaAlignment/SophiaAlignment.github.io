@@ -15,11 +15,12 @@
 .bibContent{
     white-space: nowrap;
     width: 70%;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
     padding: 1%;
     padding-left: 3%;
     padding-right: 3%;
     overflow-x: auto;
+    /* border: solid 2px #f0f0f0; */
 }
 
 .pic-box1{
