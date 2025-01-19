@@ -7,11 +7,18 @@
     align-items: center;
 }
 
+.bibLine{
+    line-height: 14px;
+    height: 15px;
+}
+
 .bibContent{
+    white-space: nowrap;
     width: 70%;
     background-color: #f0f0f0;
     padding: 1%;
     padding-left: 3%;
+    padding-right: 3%;
     overflow-x: auto;
 }
 
