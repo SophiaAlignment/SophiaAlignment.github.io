@@ -1,11 +1,13 @@
 ---
 layout: paper
-title: SPRM
+title: S2PRM
 ---
-<body class="theme-base-0c">
+<body class="theme-base-0c" style="font-family: sans-serif">
     <div class="mainContent">
         <div class="divcontent">
-            <div class="maintitle">S<sup>2</sup>PRM: Providing Crucial Reward for LLM Reasoning by Soft-step Process Reward Model
+            <div class="maintitle">S<sup>2</sup>PRM: Providing Crucial Reward for LLM Reasoning 
+            </div>
+            <div class="maintitle">by Soft-step Process Reward Model
             </div>
             <div class="papercontent">
                 <div class="text" style="font-weight: 550;text-align: center;">
@@ -26,18 +28,9 @@ title: SPRM
                     Chuheng Zhang<sup>7,#</sup>, Wei Shen<sup>8,#</sup>, Jiang Bian<sup>7</sup>
                     , Zhouhan Lin<sup>3,9,#</sup>
                 </div>
-<!--                 <div class="text">
-                    <sup>1</sup>Nanjing University <sup>2</sup>University of Technology Sydney <sup>3</sup>Shanghai Jiaotong University
+                <div class="text" style="font-weight: 150;text-align: center;">
+                    *Indicates Equal Contribution
                 </div>
-                <div class="text">
-                    NCEPU <sup>5</sup>UW-Madison <sup>6</sup>Baidu Inc.
-                </div>
-                <div class="text">
-                    MSRA <sup>8</sup>ByteDance-Seed <sup>9</sup>Shanghai Innovation Institute
-                </div>
-                <div class="text">
-                    {liuyl03181, lux17999}@gmail.com
-                </div> -->
                 
             </div>
         </div>
@@ -65,8 +58,8 @@ title: SPRM
                 model achieves state-of-the-art Best-of-N performance. Additionally, we provide a comprehensive
                 analysis and case study on both the performance
                 and generalization capability of our method. For
-                ease of reimplementation, our checkpoints and all
-                data are available at <a class="link" href="#">GitHub Release</a>
+                ease of reimplementation, our checkpoints, data and code 
+                are available at <a class="link" href="https://sophiaalignment.github.io/release/">Release</a>.
                     
                
                 </div>
@@ -79,7 +72,7 @@ title: SPRM
             <div class="papercontent">
                 <img src="../picture/figure-method-main_00.png" style="width: 100%;height: auto;">
                 <div class="text">
-                    Method overview.<strong>a) S<sup>2</sup>PRM Training Data Construction Pipeline.</strong>  ①: Sampling from the dataset of a
+                    Method overview.a) <strong>S<sup>2</sup>PRM Training Data Construction Pipeline.</strong>  ①: Sampling from the dataset of a
                     certain domain and getting confidence and samples for the training dataset; ②: Gathering the confidence distribution
                     of all samples and getting threshold that divides the distribution into steps of 2% of the token numbers; ③: Dividing
                     reasoning steps by threshold and labeling steps by rollout. <strong>b) the difference between hard and soft step division.</strong>
@@ -91,7 +84,7 @@ title: SPRM
                 </div>
                 <img src="../picture/figure-method-PGI_00.png" style="width: 100%;height: auto;">
                 <div class="text">
-                    We illustrate PGI by a simple example, the green token denotes the selected tokens, whereas the gray
+                    Method overview.b) We illustrate PGI by a simple example, the green token denotes the selected tokens, whereas the gray
                     token indicate the tokens that were not selected. The question is 3 * ( 1 + 1 ) = ?, and the output should be 6; in
                     this case, the task model exhibits low confidence (where Cy < τ ) when calculating the answer of 1 + 1, and then
                     determine which number to plus with 3, PRM should select the best token it judges to get the correct final answer.
@@ -99,14 +92,14 @@ title: SPRM
             </div>
         </div>
 
-        <div class="divcontent">
+<!--         <div class="divcontent">
             <div class="title">
                 Introduction
             </div>
             <div class="papercontent">
                 <div class="text">
                 Large language models (LLMs) have shown exceptional
-                performance across various tasks. Nonetheless, even stateof-the-art LLMs encounter difficulties when addressing complex, multi-step reasoning problems, such as mathematical
+                performance across various tasks. Nonetheless, even state-of-the-art LLMs encounter difficulties when addressing complex, multi-step reasoning problems, such as mathematical
                 reasoning and code reasoning tasks (Huang et al., 2024;
                 Tyen et al., 2024; Mirzadeh et al., 2024). One effective
                 method involves training reward models to judge the correctness of model completions. With a good reward model,we can adopt reinforcement learning from the human feedback (RLHF) method, rejection sampling method, or Best
@@ -124,7 +117,7 @@ title: SPRM
                     process.
                     </div>
                     <Div class="text">
-                        There are two existing reward models: the outcomesupervised reward model (ORM) and the process-supervised
+                    There are two existing reward models: the outcomesupervised reward model (ORM) and the process-supervised
                     reward model (PRM). ORM assigns a score to the full LLM
                     output. In contrast, since Uesato et al. (2022) found that the
                     correctness of the intermediate reasoning steps is essential in
@@ -141,7 +134,7 @@ title: SPRM
                     
                     </Div>
                     <div class="text">
-                        Existing PRMs typically divide a model’s response into
+                    Existing PRMs typically divide a model’s response into
                     multiple reasoning steps using a pre-defined symbol such as
                     ”new line break” or a fixed number of tokens. However, thisapproach has several limitations: 1) it fails to account for the
                     mismatch between decision points in reasoning and markers
@@ -203,10 +196,10 @@ title: SPRM
                     <div class="text" style="width: 100%;">
                         Our main contributions are as follows:
                     </div>
-                    <div class="text">
-                        1. We propose a new PRM training data construction
-                        method with implementation in the Mathematics and
-                        Code domains, respectively.
+                    <div class="text"  style="text-align: justify;">
+1. We propose a new PRM training data construction
+method with implementation in the Mathematics and
+Code domains, respectively.
                     </div>
                     <div class="text">
                         2. We propose a new PRM usage during model inference,
@@ -226,7 +219,7 @@ title: SPRM
                         problems from LeetCode with test cases (LeetCoTE)
                         and an easy-to-use execute sandbox.
                     </div>
-            </div>
+            </div> -->
 
             <div class="title">
                 Method
@@ -234,7 +227,7 @@ title: SPRM
             <div class="papercontent">
                 <div class="text">
                     In this section, we first introduce the preliminaries of the language model inference process, then illustrate our method
-                    that divides the reasoning process and estimates reward.
+                    that divides the reasoning process and estimates the reward.
                     Finally, we illustrate the proposed PRM-guided inference.
                 </div>
                 <div class="title-little">
@@ -341,7 +334,7 @@ title: SPRM
                     y_{s_k}^{HE}=\left\{
                     \begin{aligned}
                     1 & & \exists t_j \in T, t_j \text { is correct } \\
-                    0 & &, \mathrm{Otherwise} \\
+                    0 & & \mathrm{Otherwise} \\
                     \end{aligned}
                     \right.
                     \label{eqa:HE}
@@ -371,11 +364,7 @@ title: SPRM
                     1. Best of N Evaluation Results
                 </div>
                 <div class="text">
-                    We show the Mathematics domain BoN evaluation results
-                    in Figure 4 and the Code domain BoN evaluation results in
-                    Figure 5.
-                </div>
-                <div class="text">
+                    <strong>We show the Mathematics domain BoN evaluation results in Figure 4 and the Code domain BoN evaluation results in Figure 5.</strong>
                     In the Mathematics domain, we find that S<sup>2</sup>PRM-L performs best across Figure 4a, 4b and 4d. However, the performance of S<sup>2</sup>PRM-M is generally the worst among all
                     the experiments, and we attribute this to the following factors: the <strong>base model</strong>, the <strong>data sources for construction</strong>,
                     and the <strong>costs and models for construction</strong>. 1) For the
@@ -402,7 +391,7 @@ title: SPRM
                 </div>
                 <div class="pic-box1">
                     <div class="picinbox">
-                        <img src="../picture/figure-GSM8k_bon_candidates_llama_traindatamistral.png" style="width: 95%;">
+                        <img src="../picture/figure-GSM8k_bon_candidates_llama_traindatamistral.png" style="width: 83%;">
                         <span>(a)</span>
                     </div>
                     <div class="picinbox">
@@ -419,23 +408,11 @@ title: SPRM
                     </div>
                 </div>
                 <div class="text">
-                    BoN results for the Mathematics domain, for S<sup>2</sup>PRM, we use the Mistral generated training dataset to align with
+                    Figure 4. BoN results for the Mathematics domain, for S<sup>2</sup>PRM, we use the Mistral generated training dataset to align with
                     ER-PRM to train Mistral (S<sup>2</sup>PRM-M) and Llama (S<sup>2</sup>PRM-L) and test all the PRMs on (a) MetaMath-Llama generated
                     GSM8k BoN candidates; (b) MetaMath-Mistral generated GSM8k BoN candidates; (c) MetaMath-Llama generated
                     MATH500 BoN candidates, and (d) MetaMath-Mistral generated MATH500 BoN candidates.
 
-                </div>
-                <img src="../picture/table1.png" width="90%">
-                <div class="text">
-                    Table 1: Mathematics domain PRM Guided Inference results. Acc@1 refers to the inference model’s greedy search
-                    performance. S<sup>2</sup>PRM-L represents Mathematics PRM based on Llama, S<sup>2</sup>PRM-M represents Mathematics PRM trained
-                    based on Mistral.
-                </div>
-                <img src="../picture/table2.png" width="40%">
-                <div class="text">
-                    Table 2: Code domain PRM Guided Inference results.
-                    Pass@1 refers to the greedy search performance of the inference model (DeepSeek-SFT).
-                </div>
                 <div class="pic-box1">
                     <div class="picinbox">
                         <img src="../picture/figure-LCT_bon_candidates_ds.png" style="width: 60%;">
@@ -447,7 +424,7 @@ title: SPRM
                     </div>
                 </div>
                 <div class="text">
-                    BoN results for the Code domain, we test S2PRMD and a Code-ORM (ORM-D) on (a) DeepSeek-SFT generated LeetCoTE BoN candidates; (b) DeepSeek-SFT generated LiveCodeBench BoN candidates.
+                    Figure 5. BoN results for the Code domain, we test S2PRMD and a Code-ORM (ORM-D) on (a) DeepSeek-SFT generated LeetCoTE BoN candidates; (b) DeepSeek-SFT generated LiveCodeBench BoN candidates.
 
                 </div>
                 <div class="title-little">
@@ -465,13 +442,61 @@ title: SPRM
                     results surpassing those of greedy search by guiding the
                     reasoning model with accurate judgment.
                 </div>
+                
+                </div>
+                <img src="../picture/table1.png" width="90%">
+                <div class="text">
+                    Table 1: Mathematics domain PRM Guided Inference results. Acc@1 refers to the inference model’s greedy search
+                    performance. S<sup>2</sup>PRM-L represents Mathematics PRM based on Llama, S<sup>2</sup>PRM-M represents Mathematics PRM trained
+                    based on Mistral.
+                </div>
+                <img src="../picture/table2.png" width="40%">
+                <div class="text">
+                    Table 2: Code domain PRM Guided Inference results.
+                    Pass@1 refers to the greedy search performance of the inference model (DeepSeek-SFT).
+                </div>
+                
             </div>
+        </div>
+
+
+        <div class="divcontent">
+            <div class="title">
+                Findings
+            </div>
+            <div class="papercontent">
+                <div class="text">
+                    <ul>
+                      <li>The dataset construction cost of S2PRM demonstrates construct cost predictable and sample efficiency, as we only use almost 60% inference resource compared to previous open-sourced works.</li>
+                      <li>In the Mathematics domain, 3.85% tokens (tokens in mathematical expressions) contribute 21.03% decision tokens.</li>
+                      <li>In the Code domain, most decision points occur in the Code Comment type (80%) but not in the Code type (20%), as 91% of lines of Code Comment are planning what to write in the following Code lines.</li>
+                      <li>S2PRM exhibits in-domain and cross-domain generalization ability and scoring position generalization but faces challenges in length generalization.</li>
+                      <li>Training models with data from multiple domains can enhance their performance and capabilities.</li>
+                    </ul>
+                For more information, please refer to our paper.
+                </div>
+            </div>
+
             <div class="title">
                 BibTex
             </div>
             <div class="bibContent">
                 test
             </div>
+        </div>
+        
+        <div class="divcontent">
+            <div class="title">
+                Acknowledgment
+            </div>
+            <div class="papercontent">
+                <div class="text">
+                We sincerely thank Zilin Zhu for providing valuable suggestions on efficiency optimizations of
+                our code and Di Yang for his advice during the completion
+                of the work.
+                </div>
+            </div>
+            
         </div>
         
     </div>
