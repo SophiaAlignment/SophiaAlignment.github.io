@@ -1,511 +1,533 @@
----
-layout: paper
-title: S2PRM
----
-<body class="theme-base-0c" style="font-family: sans-serif">
-    <div class="mainContent">
-        <div class="divcontent">
-            <div class="maintitle">S<sup>2</sup>PRM: Providing Crucial Reward for LLM Reasoning 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="paper1.css">
+    <title>SophiaAlignment</title>
+    <link rel="icon" href="static/images/favicon.ico" type="image/ico">
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+    <div class="is-centered">
+        <h1 class="titlemax">S<sup>2</sup>PRM: Providing Crucial Reward for LLM
+            Reasoning</h1>
+        <h1 class="titlemax">by Soft-step Process Reward Model</h1>
+        <div class="authers1">
+            <!-- Paper authors -->
+            <span class="authers1">
+                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Yuliang Liu
+                </a>
+                <sup>*</sup>,
+            </span>
+            <span class="authers1">
+                <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Junjie Lu</a><sup>*</sup>,
+            </span>
+            <span>
+                <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Zhaoling Chen</a>,
+            </span>
+            <span>
+                <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Chaofeng Qu</a>
+            </span>
+        </div>
+
+        <div class="authers1">
+            <span class="authers1">
+                JK Liu, Chonghan Liu,</span>
+
+        </div>
+        <div>
+            <span class="authers2">
+                Yunhui Xia<sup></sup>
+                ,
+                Chuheng Zhang<sup>#</sup>, Wei Shen<sup>#</sup>, Jiang Bian<sup></sup>
+                , Zhouhan Lin<sup>#</sup></span>
+
+        </div>
+        <div>
+            <span class="authers2">
+                Indicates Equal Contribution
+                #Indicates Equal Contribution</span>
+
+        </div>
+        <div class="link-block-box">
+            <div class="link-block">
+                <a href="/" target="_blank" class="link-block-a">
+                    <img class="myiconimg" src="static/images/home.svg" alt="">
+                    <span>Home</span>
+                </a>
             </div>
-            <div class="maintitle">by Soft-step Process Reward Model
+
+            <!-- Supplementary PDF link -->
+            <div class="link-block">
+                <a herf="#" target="_blank" class="link-block-a">
+                    <img class="myiconimg" src="static/images/paper.svg" alt="">
+                    <span>Paper</span>
+                </a>
             </div>
-            <div class="papercontent">
-                <div class="text" style="font-weight: 550;text-align: center;">
-                    Yuliang Liu<sup>∗</sup> 
-                    , Junjie Lu<sup>∗</sup>
-                    , Zhaoling Chen<sup></sup>
-                    , Chaofeng Qu<sup></sup>
-                    ,
-                    
-                </div>
-                <div class="text" style="font-weight: 550;text-align: center;">
-                    Zefan Cai<sup></sup>
-                    , JK Liu, Chonghan Liu,
-                </div>
-                <div class="text" style="font-weight: 550;text-align: center;">
-                    Yunhui Xia<sup></sup>
-                    ,
-                    Chuheng Zhang<sup>#</sup>, Wei Shen<sup>#</sup>, Jiang Bian<sup></sup>
-                    , Zhouhan Lin<sup>#</sup>
-                </div>
-                <div class="text" style="font-weight: 150;text-align: center;">
-                    *Indicates Equal Contribution
-                    #Indicates Equal Contribution
-                </div>
-                
+
+            <!-- Github link -->
+            <div class="link-block">
+                <a href="/release" target="_blank" class="link-block-a">
+                    <img class="myiconimg" src="static/images/release.svg" alt="">
+                    <span>Release</span>
+                </a>
+            </div>
+
+            <!-- ArXiv abstract Link -->
+            <div class="link-block">
+                <a href="/about" target="_blank" class="link-block-a">
+                    <img class="myiconimg" src="static/images/about.svg" alt="">
+                    <span>About</span>
+                </a>
             </div>
         </div>
-        
-        <div class="divcontent">
-            <div class="title">
-                Abstract
-            </div>
-            <div class="papercontent">
-                <div class="text">
+
+    </div>
+    <div class="graydiv is-centered">
+        <div class="width60">
+            <h2 class="titleh2">Abstract</h2>
+            <div class="mytext">
                 Process Reward Models (PRMs) have emerged as
-                an effective method to enhance the multi-step reasoning abilities of large language models (LLMs).
+                an effective method to enhance the multi-step reasoning abilities of large language models
+                (LLMs).
                 Existing PRMs typically divide the response into
-                multiple reasoning steps using pre-defined placeholder tokens. However, this approach ignores
-                that the true decision points are usually not associated with specific words or markers in text.
+                multiple reasoning steps using pre-defined placeholder tokens. However, this approach
+                ignores
+                that the true decision points are usually not associated with specific words or markers in
+                text.
                 Accordingly, we propose a model-defined reasoning step dividing method, which contrasts with
                 human-defined hard division strategies, with the
                 trained PRM named S<sup>2</sup>PRM (Soft-step Process
                 Reward Model) This approach not only enables
-                precise process rewards at model-critical reasoning positions but also improves sample efficiency
+                precise process rewards at model-critical reasoning positions but also improves sample
+                efficiency
                 and reduces PRMs’ training costs. Furthermore,
                 this method is low-cost and can easily be extended
                 to other reasoning tasks, such as code generation.
                 Our experimental results demonstrate that our
-                model achieves state-of-the-art Best-of-N performance. Additionally, we provide a comprehensive
+                model achieves state-of-the-art Best-of-N performance. Additionally, we provide a
+                comprehensive
                 analysis and case study on both the performance
                 and generalization capability of our method. For
-                ease of reimplementation, our checkpoints, data and code 
-                are available at <a class="link" href="https://sophiaalignment.github.io/release/">Release</a>.
-                    
-               
-                </div>
+                ease of reimplementation, our checkpoints, data and code
+                are available at
+                <a class="link" href="https://sophiaalignment.github.io/release/">Release</a>.
+            </div>
+
+        </div>
+    </div>
+    <div class="whiitediv is-centered">
+        <div class="width60">
+            <h2 class="titleh2-left">Method Overview</h2>
+            <img alt="" src="static/images/figure-method-main_00.png" class="myimages">
+            <div class="mytext">
+                Method overview.a) <strong>S<sup>2</sup>PRM Training Data Construction Pipeline.</strong> ①:
+                Sampling from the
+                dataset of a
+                certain domain and getting confidence and samples for the training dataset; ②: Gathering the
+                confidence distribution
+                of all samples and getting threshold that divides the distribution into steps of 2% of the
+                token numbers; ③:
+                Dividing
+                reasoning steps by threshold and labeling steps by rollout. <strong>b) the difference
+                    between hard and soft step
+                    division.</strong>
+                <font color="blue">Hard-step</font> corresponds to dividing the reasoning process by
+                pre-defined symbols (e.g., the
+                line break in the figure),
+                while <font color="red">soft-steps</font> are determined by inference model judgment. We
+                find that the model is
+                likely to perform soft step
+                segmentation within mathematical expressions, select variables or pronouns, and determine
+                the final answer. We
+                annotated the confidence score during model inference at division positions, where lower
+                confidence indicates that
+                the model finds it hard to decide.
+            </div>
+            <img alt="" src="static/images/figure-method-PGI_00.png" class="myimages">
+            <div class="mytext">
+                Method overview.b) We illustrate PGI by a simple example, the green token denotes the
+                selected tokens, whereas the
+                gray
+                token indicate the tokens that were not selected. The question is 3 * ( 1 + 1 ) = ?, and the
+                output should be 6; in
+                this case, the task model exhibits low confidence (where Cy < τ ) when calculating the answer of 1 + 1,
+                    and then determine which number to plus with 3, PRM should select the best token it judges to get
+                    the correct final answer. </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="graydiv is-centered">
+        <div class="width60">
+            <h2 class="titleh2-left">Method</h2>
+            <div class="mytext">
+                In this section, we first introduce the preliminaries of the language model inference
+                process, then
+                illustrate
+                our method
+                that divides the reasoning process and estimates the reward.
+                Finally, we illustrate the proposed PRM-guided inference.
+            </div>
+            <div class="title-little">
+                1. Preliminaries
+            </div>
+            <div class="mytext">
+                Let $\phi$ denote the neural network function that maps the
+                input sequence X and previously generated tokens $y_{&lt;i}$ =
+                ($y_1$, $y_2$, . . . , $y_i$−1) to the logits vector $l_i$ for predicting the
+                next token $y_i$
+                , $l_i$ ∈ R<sup>|V|</sup> where |V| is the vocabulary size:
+            </div>
+            <div class="mytext">
+                \begin{equation}
+                \mathbf{l}_i=\phi\left(X, y_{&lt;i}\right) \nonumber
+                \end{equation}
+
+            </div>
+            <div class="mytext">
+                Each element of $l_i$ represents the unnormalized score for a
+                candidate token in the vocabulary. The probability of generating token $y_i$
+                , given the input X and previously generated
+                tokens y&lt;i, is computed using the softmax function:
+
+                \begin{align}
+                p\left(y_{i} \mid X, y_{&lt;i}\right) & = \frac{\exp \left(\mathbf{l}_{i,
+                y_{i}}\right)}{\sum_{y^{\prime}
+                \in
+                \mathcal{V}} \exp \left(\mathbf{l}_{i, y^{\prime}}\right)}
+                \end{align}
+
+                where $l_{i,{y_i}}$
+                is the logits value corresponding to token $y_i$ and
+                V is the vocabulary.
+            </div>
+            <div class="text" style="width: 100%;">
+                The predicted token $y_i$
+                is determined by selecting the token
+                with the highest probability:
+
+            </div>
+            <div>
+                $$
+                \begin{equation}
+                y_i=\arg \max _{y_i} p\left(y_i \mid X, y_{&lt;i}\right) \nonumber
+                \end{equation}
+                $$
+            </div>
+            <div class="title-little">
+                2. Soft Step Division
+            </div>
+            <div class="mytext" style="width: 100%;">
+                The entire output sequence Y can be partitioned into K
+                steps:
+                $$
+                \begin{equation}
+                \mathbf{Y}=\bigcup_{k=1}^K s_k, \nonumber
+                \end{equation}
+                $$
+            </div>
+            <div class="mytext">
+                where each step $s_k = \{ y_{r_{k-1}}, \dots, y_{r_k}\}$ is a contiguous subsequence of
+                tokens, and
+                rs are
+                division points. To divide the
+                answer into a step-by-step format, we follow the calculation
+                method of model confidence (Hills & Anadkat, 2024) using
+                the following equation:
+                $$
+                \begin{equation}
+                \text{C}_{y_i} = \exp{(\log p(y_i | X, y_{&lt;i}))},
+                \label{equ:confidence}
+                \end{equation}
+                $$
+                which is numerically equal to the predicted token probability,
+                where y&lt;i represents the preceding tokens. Tokens with
+                low confidence values are identified as delimited tokens,
+                representing the start of new step sequences. At the position
+                of each delimited token, we then perform N rollouts to
+                assess the quality of the current token sequence.
+
+            </div>
+            <div class="mytext">
+                We define a confidence threshold $\tau$ to select these delimited
+                tokens with low confidence. Specifically, for a dataset, we
+                first compute the confidence value for each token of the
+                answer part in the samples. The threshold $\tau$ is determined
+                as a specific percentile of the confidence distribution across
+                the dataset, ensuring an average of K − 1 steps for each
+                sample divided by delimiter tokens. With the last step at the
+                end of the answer, each sample contains an average of K
+                steps.
+
+            </div>
+            <div class="title-little">
+                3. Reward Estimation
+            </div>
+            <div class="mytext">
+                For each step, we estimate the quality of individual steps in
+                an answer following the heuristic rollout methods proposed
+                by (Wang et al., 2024).
+            </div>
+            <div class="mytext">
+                During the rollout phase, we generate $N$ reasoning processes starting from step $s_i$,
+                denoted as
+                $\left\{s_i,
+                T_j\right\}^N_{j=1}$, where $T_j$ is the rollouted $j$-th solution with the previous
+                sequence $s_i$.
+                Then, we estimate the reward of this step based on the correctness of all decoded solutions.
+                We use
+                hard
+                estimation (HE) to estimate the reward for step $s_k$, which shows whether the current
+                inference
+                sequence
+                can
+                reach the correct answer. For example, in the Code domain, correct means the generated code
+                can pass
+                all the
+                test cases; in the Mathematics domain, it means the final answer matches the ground truth:
+
+
+                \begin{equation}
+                % y_{s_k}^{H E}= \mathbb I \left(\exists o_j \in O \mid o_j \text { is correct }\right)
+                y_{s_k}^{HE}=\left\{
+                \begin{aligned}
+                1 & & \exists t_j \in T, t_j \text { is correct } \\
+                0 & & \mathrm{Otherwise} \\
+                \end{aligned}
+                \right.
+                \label{eqa:HE}
+                \end{equation}
+            </div>
+            <div class="title-little">
+                4. PRM Guided Inference
+            </div>
+            <div class="mytext">
+                The PGI evaluation strategy leverages the well-trained PRM to enhance token selection during
+                decoding.
+                Specifically, when the model encounters a low-confidence position in the decoding sequence,
+                it
+                triggers the
+                PRM
+                to evaluate the top $M$ candidate tokens $y_t^*=\{y_1',y_2',\dots,y_M'\}$.
+
+                Among these candidates, the PRM selects the token it considers the best based on its learned
+                reward
+                estimation
+                mechanism:
+
+                \begin{equation}
+                y_t=\arg \max _{y_k' \in y_t^*} R\left(X, y_{&lt;t},y_k'\right),
+                \end{equation}
+                , where $y_t$ is the token selected as the optimal choice for decoding position $t$, and
+                $R(*)$
+                represents
+                the
+                PRM rewarding process.
             </div>
         </div>
-        <div class="divcontent">
-            <div class="title">
-                Method Overview
+    </div>
+    <div class="whiitediv is-centered">
+        <div class="width60">
+            <h2 class="titleh2-left">Experiment Results</h2>
+            <div class="title-little">
+                1. Best of N Evaluation Results
             </div>
-            <div class="papercontent">
-                <img src="../picture/figure-method-main_00.png" style="width: 100%;height: auto;">
-                <div class="text">
-                    Method overview.a) <strong>S<sup>2</sup>PRM Training Data Construction Pipeline.</strong>  ①: Sampling from the dataset of a
-                    certain domain and getting confidence and samples for the training dataset; ②: Gathering the confidence distribution
-                    of all samples and getting threshold that divides the distribution into steps of 2% of the token numbers; ③: Dividing
-                    reasoning steps by threshold and labeling steps by rollout. <strong>b) the difference between hard and soft step division.</strong>
-                    <font color="blue">Hard-step</font> corresponds to dividing the reasoning process by pre-defined symbols (e.g., the line break in the figure),
-                    while <font color="red">soft-steps</font> are determined by inference model judgment. We find that the model is likely to perform soft step
-                    segmentation within mathematical expressions, select variables or pronouns, and determine the final answer. We
-                    annotated the confidence score during model inference at division positions, where lower confidence indicates that
-                    the model finds it hard to decide.
-                </div>
-                <img src="../picture/figure-method-PGI_00.png" style="width: 100%;height: auto;">
-                <div class="text">
-                    Method overview.b) We illustrate PGI by a simple example, the green token denotes the selected tokens, whereas the gray
-                    token indicate the tokens that were not selected. The question is 3 * ( 1 + 1 ) = ?, and the output should be 6; in
-                    this case, the task model exhibits low confidence (where Cy < τ ) when calculating the answer of 1 + 1, and then
-                    determine which number to plus with 3, PRM should select the best token it judges to get the correct final answer.
-                </div>
+            <div class="mytext">
+                <strong>We show the Mathematics domain BoN evaluation results in Figure 4 and the Code
+                    domain BoN evaluation results
+                    in Figure 5.</strong>
+                In the Mathematics domain, we find that S<sup>2</sup>PRM-L performs best across Figure 4a,
+                4b and 4d. However, the
+                performance of S<sup>2</sup>PRM-M is generally the worst among all
+                the experiments, and we attribute this to the following factors: the <strong>base
+                    model</strong>, the <strong>data
+                    sources for construction</strong>,
+                and the <strong>costs and models for construction</strong>. 1) For the
+                base model, S<sup>2</sup>PRM-M uses Mistral, which is less capable
+                than Llama, resulting in poorer performance compared to
+                ER-PRM. 2) For the data sources, S<sup>2</sup>PRM only utilizes the
+                GSM8k and MATH training sets during training data construction, while both ER-PRM and
+                Math-Shepherd use the
+                MATH test set (without using MATH500), which results
+                in our performance being inferior to theirs on MATH500.
+                3) For the costs and models used in construction, the data
+                construction costs for S<sup>2</sup>PRM is approximately 60% of that
+                for the other two methods and only used a single construct
+                model, we will discuss our sample efficiency feature in
+                the next section. Additionally, Math-Shepherd performs
+                an extra epoch of training on the MetaMath model using
+                the GSM8k and MATH training sets before generating its
+                PRM training data, a step we did not follow. This could be
+                considered a data construction trick, contributing to their
+                better performance.
             </div>
-        </div>
-
-<!--         <div class="divcontent">
-            <div class="title">
-                Introduction
+            <div class="text">
+                In the two datasets of the Code domain, S<sup>2</sup>PRM-D demonstrates better judging
+                capabilities, and as the
+                number of
+                candidates increases, the robustness of S<sup>2</sup>PRM-D is superior to that of the ORM.
             </div>
-            <div class="papercontent">
-                <div class="text">
-                Large language models (LLMs) have shown exceptional
-                performance across various tasks. Nonetheless, even state-of-the-art LLMs encounter difficulties when addressing complex, multi-step reasoning problems, such as mathematical
-                reasoning and code reasoning tasks (Huang et al., 2024;
-                Tyen et al., 2024; Mirzadeh et al., 2024). One effective
-                method involves training reward models to judge the correctness of model completions. With a good reward model,we can adopt reinforcement learning from the human feedback (RLHF) method, rejection sampling method, or Best
-                of N method to further enhance the precision and reliability
-                of the LLM outputs (Shao et al., 2024; Sessa et al., 2024;
-                Gao et al., 2024).
+            <div class="pic-box1">
+                <div class="picinbox">
+                    <img alt="" src="static/images/figure-GSM8k_bon_candidates_llama_traindatamistral.png"
+                        style="width: 83%;">
+                    <span>(a)</span>
                 </div>
-            </div>
-            <div class="papercontent">
-                <img src="../picture/figure-intro-main_00.png" style="width: 100%;height: auto;">
-                    <div class="text">
-                    Figure 1: Suggested by (Kahneman, 2011), the human thinking process requires different reasoning costs depending on
-                    task difficulty. Simple problems can be quickly resolved,
-                    while complex problems require more effort at certain decision points, which we term <strong>decision point</strong>  in the reasoning
-                    process.
-                    </div>
-                    <Div class="text">
-                    There are two existing reward models: the outcomesupervised reward model (ORM) and the process-supervised
-                    reward model (PRM). ORM assigns a score to the full LLM
-                    output. In contrast, since Uesato et al. (2022) found that the
-                    correctness of the intermediate reasoning steps is essential in
-                    LLM for complex reasoning tasks, the evolution of reward
-                    models has become increasingly fine-grained, namely the
-                    Process-supervised Reward Model (PRM), solving mathematical problems by PRM has become an essential approach.
-                    In Ma et al. (2023b); Luo et al. (2024), the score of PRM
-                    represents the correctness of the current reasoning step, and
-                    in Wang et al. (2024), they indicate whether a reasoning step
-                    is a potential path leading to the correct answer. Despite the
-                    inherent differences between these approaches, both have
-                    demonstrated exemplary performance as verifiers (Xiong
-                    et al., 2024; Setlur et al., 2024) and value functions in reinforcement learning (Zhang et al., 2024a; Wang et al., 2024).
-                    
-                    </Div>
-                    <div class="text">
-                    Existing PRMs typically divide a model’s response into
-                    multiple reasoning steps using a pre-defined symbol such as
-                    ”new line break” or a fixed number of tokens. However, thisapproach has several limitations: 1) it fails to account for the
-                    mismatch between decision points in reasoning and markers
-                    commonly used in writing, such as line breaks or sentenceending punctuation; and 2) it assumes that every sentence
-                    ending with a line break involves the exact reasoning costs,
-                    without considering the specific content or function of each
-                    part.
-                    
-                    </div>
-                    <div class="text"> 
-                        To address these issues, we aim to find a more suitable
-                        step division method to improve both the efficiency and
-                        performance of PRMs. As suggested by (Kahneman, 2011),
-                        the cognitive cost required for reasoning varies depending
-                        on the task’s difficulty. A statistical analysis of common
-                        errors in reasoning tasks conducted by (Roy & Roth, 2016)
-                        revealed that many errors arise from incorrect numerical
-                        calculations or the misapplication of words, such as verb
-                        misuse. This indicates that certain words or positions in the
-                        reasoning process require more attention.
-                    </div>
-                    <div class="text">
-                        Additionally, we find that the inference model can determine
-                        the optimal division of the inference process itself. Accordingly, we propose a framework to construct a PRM training
-                        dataset using a model-divided inference process, with the
-                        resulting PRM named the Soft-step Process Reward Model
-                        (S<sup>2</sup>PRM). The term ”soft-step” refers to using a non-fixed
-                        segmentation strategy, unlike the traditional ”hard-step” approach with a fixed one.
-
-                    </div>
-                    <div class="text">
-                        To assess the effectiveness of S<sup>2</sup>PRM, we provide a Mathematics version implementation, evaluated on
-                        GSM8k (Cobbe et al., 2021) and MATH (Hendrycks et al.,
-                        2021) dataset and a Code version implementation. To train
-                        the Code version PRM, we collect a dataset containing 1940
-                        problems from LeetCode Problems, with the corresponding solutions and test cases, which is named <strong>LeetCoTE</strong>
-                        (LeetCode Train & Eval). The training dataset for S<sup>2</sup>PRM
-                        for the Code domain is generated by a model fine-tuned
-                        on the LeetCoTE training set and evaluated on the LeetCoTE test set and Livecodebench (Jain et al., 2024). In the
-                        Mathematics domain, S<sup>2</sup>PRM demonstrates the best performance compared to the previous open-sourced works, and
-                        in the Code domain, S<sup>2</sup>PRM shows superior performance
-                        and robustness compared to the Ourcome Reward Model
-                        (ORM).
-                        
-                    </div>
-                    <div class="text">
-                        Furthermore, since the most widely used PRM step division
-                        method in the past was based on a fixed symbol, which
-                        only involve judgment at the sentence level, the works using
-                        PRM to assist model inference have to be focused on the
-                        sentence level, leading to limitations in generalization and
-                        applicability. In contrast, S<sup>2</sup>PRM can be regarded as an upsampled token-level PRM, which provides strong judgment
-                        capabilities at the token level. To expand the applicability of
-                        PRM, we propose PRM Guided Inference (PGI), which introduces PRM directly to participate in the model inference
-                        process. In the PGI scenario, S<sup>2</sup>PRM achieves improvement by <strong>2.43</strong> compared to greedy decoding on the GSM8k dataset and achieves <strong>3.60</strong> improvement on the MATH500
-                        dataset in the Mathematics domain. On the two test sets in
-                        the code domain, it improved by <strong>1.72</strong> and <strong>2.00</strong>, respectively.
-                    </div>
-                    <div class="text" style="width: 100%;">
-                        Our main contributions are as follows:
-                    </div>
-                    <div class="text"  style="text-align: justify;">
-1. We propose a new PRM training data construction
-method with implementation in the Mathematics and
-Code domains, respectively.
-                    </div>
-                    <div class="text">
-                        2. We propose a new PRM usage during model inference,
-                        PRM Guided Inference (PGI), effectively introducing
-                        PRM participating directly into the LLM inference
-                        process.
-                    </div>
-                    <div class="text">
-                        3. Our results show that S<sup>2</sup>PRM is currently the state-ofthe-art approach. In addition to the results, we also
-                        analyze and explore several properties of S<sup>2</sup>PRM and
-                        its training data.
-
-                    </div>
-                    <div class="text">
-                        4. We have accelerated the process using state-of-theart techniques during training and inference and have
-                        collected a large number of competition-level coding
-                        problems from LeetCode with test cases (LeetCoTE)
-                        and an easy-to-use execute sandbox.
-                    </div>
-            </div> -->
-
-            <div class="title">
-                Method
-            </div>
-            <div class="papercontent">
-                <div class="text">
-                    In this section, we first introduce the preliminaries of the language model inference process, then illustrate our method
-                    that divides the reasoning process and estimates the reward.
-                    Finally, we illustrate the proposed PRM-guided inference.
+                <div class="picinbox">
+                    <img alt="" src="static/images/figure-GSM8k_bon_candidates_mistral_traindatamistral.png"
+                        style="width: 95%;">
+                    <span>(b)</span>
                 </div>
-                <div class="title-little">
-                    1. Preliminaries
+                <div class="picinbox">
+                    <img alt="" src="static/images/figure-MATH500_bon_candidates_llama_traindatamistral.png"
+                        style="width: 95%;">
+                    <span>(c)</span>
                 </div>
-                <div class="text">
-                    Let $\phi$ denote the neural network function that maps the
-                    input sequence X and previously generated tokens $y_{&lt;i}$ =
-                    ($y_1$, $y_2$, . . . , $y_i$−1) to the logits vector $l_i$ for predicting the
-                    next token $y_i$
-                    , $l_i$ ∈ R<sup>|V|</sup> where |V| is the vocabulary size:
-                </div>
-                <div class="text">
-                    \begin{equation}
-                    \mathbf{l}_i=\phi\left(X, y_{&lt;i}\right) \nonumber
-                    \end{equation}
-
-                </div>
-                <div class="text">
-                    Each element of $l_i$ represents the unnormalized score for a
-                    candidate token in the vocabulary. The probability of generating token $y_i$
-                    , given the input X and previously generated
-                    tokens y&lt;i, is computed using the softmax function:
-                    
-                    \begin{align}
-                    p\left(y_{i} \mid X, y_{&lt;i}\right) & = \frac{\exp \left(\mathbf{l}_{i, y_{i}}\right)}{\sum_{y^{\prime} \in \mathcal{V}} \exp \left(\mathbf{l}_{i, y^{\prime}}\right)}
-                    \end{align}
-
-                    where $l_{i,{y_i}}$
-                    is the logits value corresponding to token $y_i$ and
-                    V is the vocabulary.
-                </div>
-                <div class="text" style="width: 100%;">
-                    The predicted token $y_i$
-                    is determined by selecting the token
-                    with the highest probability:
-                    
-                </div>
-                <div>
-                    $$
-                    \begin{equation}
-                    y_i=\arg \max _{y_i} p\left(y_i \mid X, y_{&lt;i}\right) \nonumber
-                    \end{equation}
-                    $$
-                </div>
-                <div class="title-little">
-                    2. Soft Step Division
-                </div>
-                <div class="text" style="width: 100%;">
-                    The entire output sequence Y can be partitioned into K
-                    steps:
-                    $$
-                    \begin{equation}
-                    \mathbf{Y}=\bigcup_{k=1}^K s_k, \nonumber
-                    \end{equation}
-                    $$
-                </div>
-                <div class="text">
-                    where each step $s_k = \{ y_{r_{k-1}}, \dots, y_{r_k}\}$ is a contiguous subsequence of tokens, and rs are division points. To divide the
-                        answer into a step-by-step format, we follow the calculation
-                        method of model confidence (Hills & Anadkat, 2024) using
-                        the following equation:
-                        $$
-                        \begin{equation}
-                            \text{C}_{y_i} = \exp{(\log p(y_i | X, y_{&lt;i}))},
-                        \label{equ:confidence}
-                        \end{equation}
-                        $$
-                        which is numerically equal to the predicted token probability,
-                        where y&lt;i represents the preceding tokens. Tokens with
-                        low confidence values are identified as delimited tokens,
-                        representing the start of new step sequences. At the position
-                        of each delimited token, we then perform N rollouts to
-                        assess the quality of the current token sequence.
-
-                </div>
-                <div class="text">
-                    We define a confidence threshold $\tau$ to select these delimited
-                    tokens with low confidence. Specifically, for a dataset, we
-                    first compute the confidence value for each token of the
-                    answer part in the samples. The threshold $\tau$ is determined
-                    as a specific percentile of the confidence distribution across
-                    the dataset, ensuring an average of K − 1 steps for each
-                    sample divided by delimiter tokens. With the last step at the
-                    end of the answer, each sample contains an average of K
-                    steps.
-
-                </div>
-                <div class="title-little">
-                    3. Reward Estimation
-                </div>
-                <div class="text">
-                    For each step, we estimate the quality of individual steps in
-                    an answer following the heuristic rollout methods proposed
-                    by (Wang et al., 2024).
-                </div>
-                <div class="text">
-                    During the rollout phase, we generate $N$ reasoning processes starting from step $s_i$, denoted as $\left\{s_i, T_j\right\}^N_{j=1}$, where $T_j$ is the rollouted $j$-th solution with the previous sequence $s_i$.
-                    Then, we estimate the reward of this step based on the correctness of all decoded solutions. We use hard estimation (HE) to estimate the reward for step $s_k$, which shows whether the current inference sequence can reach the correct answer. For example, in the Code domain, correct means the generated code can pass all the test cases; in the Mathematics domain, it means the final answer matches the ground truth:
-
-
-                    \begin{equation}
-                    % y_{s_k}^{H E}= \mathbb I \left(\exists o_j \in O \mid o_j \text { is correct }\right)
-                    y_{s_k}^{HE}=\left\{
-                    \begin{aligned}
-                    1 & & \exists t_j \in T, t_j \text { is correct } \\
-                    0 & & \mathrm{Otherwise} \\
-                    \end{aligned}
-                    \right.
-                    \label{eqa:HE}
-                    \end{equation}
-                </div>
-                <div class="title-little">
-                    4. PRM Guided Inference
-                </div>
-                <div class="text">
-                    The PGI evaluation strategy leverages the well-trained PRM to enhance token selection during decoding. Specifically, when the model encounters a low-confidence position in the decoding sequence, it triggers the PRM to evaluate the top $M$ candidate tokens $y_t^*=\{y_1',y_2',\dots,y_M'\}$.
-                
-                    Among these candidates, the PRM selects the token it considers the best based on its learned reward estimation mechanism: 
-                  
-                    \begin{equation}
-                    y_t=\arg \max _{y_k' \in y_t^*} R\left(X, y_{&lt;t},y_k'\right),
-                    \end{equation}
-                    , where $y_t$ is the token selected as the optimal choice for decoding position $t$, and $R(*)$ represents the PRM rewarding process.
+                <div class="picinbox">
+                    <img alt="" src="static/images/figure-MATH500_bon_candidates_mistral_traindatamistral.png"
+                        style="width: 95%;">
+                    <span>(d)</span>
                 </div>
             </div>
-        </div>
-        <div class="divcontent">
-            <div class="title">
-                Experiment Results
-            </div>
-            <div class="papercontent">
-                <div class="title-little">
-                    1. Best of N Evaluation Results
-                </div>
-                <div class="text">
-                    <strong>We show the Mathematics domain BoN evaluation results in Figure 4 and the Code domain BoN evaluation results in Figure 5.</strong>
-                    In the Mathematics domain, we find that S<sup>2</sup>PRM-L performs best across Figure 4a, 4b and 4d. However, the performance of S<sup>2</sup>PRM-M is generally the worst among all
-                    the experiments, and we attribute this to the following factors: the <strong>base model</strong>, the <strong>data sources for construction</strong>,
-                    and the <strong>costs and models for construction</strong>. 1) For the
-                    base model, S<sup>2</sup>PRM-M uses Mistral, which is less capable
-                    than Llama, resulting in poorer performance compared to
-                    ER-PRM. 2) For the data sources, S<sup>2</sup>PRM only utilizes the
-                    GSM8k and MATH training sets during training data construction, while both ER-PRM and Math-Shepherd use the
-                    MATH test set (without using MATH500), which results
-                    in our performance being inferior to theirs on MATH500.
-                    3) For the costs and models used in construction, the data
-                    construction costs for S<sup>2</sup>PRM is approximately 60% of that
-                    for the other two methods and only used a single construct
-                    model, we will discuss our sample efficiency feature in
-                    the next section. Additionally, Math-Shepherd performs
-                    an extra epoch of training on the MetaMath model using
-                    the GSM8k and MATH training sets before generating its
-                    PRM training data, a step we did not follow. This could be
-                    considered a data construction trick, contributing to their
-                    better performance.
-                </div>
-                <div class="text">
-                    In the two datasets of the Code domain, S<sup>2</sup>PRM-D demonstrates better judging capabilities, and as the number of
-                    candidates increases, the robustness of S<sup>2</sup>PRM-D is superior to that of the ORM.
-                </div>
-                <div class="pic-box1">
-                    <div class="picinbox">
-                        <img src="../picture/figure-GSM8k_bon_candidates_llama_traindatamistral.png" style="width: 83%;">
-                        <span>(a)</span>
-                    </div>
-                    <div class="picinbox">
-                        <img src="../picture/figure-GSM8k_bon_candidates_mistral_traindatamistral.png" style="width: 95%;">
-                        <span>(b)</span>
-                    </div>
-                    <div class="picinbox">
-                        <img src="../picture/figure-MATH500_bon_candidates_llama_traindatamistral.png" style="width: 95%;">
-                        <span>(c)</span>
-                    </div>
-                    <div class="picinbox">
-                        <img src="../picture/figure-MATH500_bon_candidates_mistral_traindatamistral.png" style="width: 95%;">
-                        <span>(d)</span>
-                    </div>
-                </div>
-                <div class="text">
-                    Figure 4. BoN results for the Mathematics domain, for S<sup>2</sup>PRM, we use the Mistral generated training dataset to align with
-                    ER-PRM to train Mistral (S<sup>2</sup>PRM-M) and Llama (S<sup>2</sup>PRM-L) and test all the PRMs on (a) MetaMath-Llama generated
-                    GSM8k BoN candidates; (b) MetaMath-Mistral generated GSM8k BoN candidates; (c) MetaMath-Llama generated
-                    MATH500 BoN candidates, and (d) MetaMath-Mistral generated MATH500 BoN candidates.
+            <div class="mytext">
+                Figure 4. BoN results for the Mathematics domain, for S<sup>2</sup>PRM, we use the Mistral
+                generated training
+                dataset to align with
+                ER-PRM to train Mistral (S<sup>2</sup>PRM-M) and Llama (S<sup>2</sup>PRM-L) and test all the
+                PRMs on (a)
+                MetaMath-Llama generated
+                GSM8k BoN candidates; (b) MetaMath-Mistral generated GSM8k BoN candidates; (c)
+                MetaMath-Llama generated
+                MATH500 BoN candidates, and (d) MetaMath-Mistral generated MATH500 BoN candidates.
 
                 <div class="pic-box1">
                     <div class="picinbox">
-                        <img src="../picture/figure-LCT_bon_candidates_ds.png" style="width: 60%;">
+                        <img alt="" src="static/images/figure-LCT_bon_candidates_ds.png" style="width: 60%;">
                         <span>(a)</span>
                     </div>
                     <div class="picinbox">
-                        <img src="../picture/figure-LCB_bon_candidates_ds.png" style="width: 60%;">
+                        <img alt="" src="static/images/figure-LCB_bon_candidates_ds.png" style="width: 60%;">
                         <span>(b)</span>
                     </div>
                 </div>
-                <div class="text">
-                    Figure 5. BoN results for the Code domain, we test S2PRMD and a Code-ORM (ORM-D) on (a) DeepSeek-SFT generated LeetCoTE BoN candidates; (b) DeepSeek-SFT generated LiveCodeBench BoN candidates.
+                <div class="mytext">
+                    Figure 5. BoN results for the Code domain, we test S2PRMD and a Code-ORM (ORM-D) on (a)
+                    DeepSeek-SFT generated
+                    LeetCoTE BoN candidates; (b) DeepSeek-SFT generated LiveCodeBench BoN candidates.
 
                 </div>
                 <div class="title-little">
                     2. PRM Guided Inference Results
 
                 </div>
-                <div class="text">
-                    We report PGI results in Table 1 and Table 2. In the Mathematics domain, S<sup>2</sup>PRM has consistently shown an ability
+                <div class="mytext">
+                    We report PGI results in Table 1 and Table 2. In the Mathematics domain,
+                    S<sup>2</sup>PRM has consistently shown
+                    an ability
                     to enhance the reasoning capacity of the inference models,
                     while ER-PRM and Math-Shepherd do not have a positive
                     effect on the reasoning process on the GSM8k testset. The
-                    results suggest that the judgment accuracy of S<sup>2</sup>PRM surpasses that of other PRMs. Especially on GSM8k, where
-                    the performance of greedy search is already well, its performance further demonstrates the accuracy of the token-level
+                    results suggest that the judgment accuracy of S<sup>2</sup>PRM surpasses that of other
+                    PRMs. Especially on
+                    GSM8k, where
+                    the performance of greedy search is already well, its performance further demonstrates
+                    the accuracy of the
+                    token-level
                     judgment. In the Code domain, S<sup>2</sup>PRM has also achieved
                     results surpassing those of greedy search by guiding the
                     reasoning model with accurate judgment.
                 </div>
-                
-                </div>
-                <img src="../picture/table1.png" width="90%">
-                <div class="text">
-                    Table 1: Mathematics domain PRM Guided Inference results. Acc@1 refers to the inference model’s greedy search
-                    performance. S<sup>2</sup>PRM-L represents Mathematics PRM based on Llama, S<sup>2</sup>PRM-M represents Mathematics PRM trained
-                    based on Mistral.
-                </div>
-                <img src="../picture/table2.png" width="40%">
-                <div class="text">
-                    Table 2: Code domain PRM Guided Inference results.
-                    Pass@1 refers to the greedy search performance of the inference model (DeepSeek-SFT).
-                </div>
-                
+
             </div>
+            <img alt="" src="static/images/table1.png" style="width: 90%;">
+            <div class="mytext">
+                Table 1: Mathematics domain PRM Guided Inference results. Acc@1 refers to the inference
+                model’s greedy search
+                performance. S<sup>2</sup>PRM-L represents Mathematics PRM based on Llama,
+                S<sup>2</sup>PRM-M represents Mathematics
+                PRM trained
+                based on Mistral.
+            </div>
+            <img alt="" src="static/images/table2.png" width="40%">
+            <div class="mytext">
+                Table 2: Code domain PRM Guided Inference results.
+                Pass@1 refers to the greedy search performance of the inference model (DeepSeek-SFT).
+            </div>
+
         </div>
-
-
-        <div class="divcontent">
-            <div class="title">
-                Findings
-            </div>
-            <div class="papercontent">
+    </div>
+    <div class="graydiv is-centered">
+        <div class="width60">
+            <h2 class="titleh2-left">Findings</h2>
+            <div class="mytext">
                 <div class="text">
                     <ul>
-                      <li>The dataset construction cost of S2PRM demonstrates construct cost predictable and sample efficiency, as we only use almost 60% inference resource compared to previous open-sourced works.</li>
-                      <li>In the Mathematics domain, 3.85% tokens (tokens in mathematical expressions) contribute 21.03% decision tokens.</li>
-                      <li>In the Code domain, most decision points occur in the Code Comment type (80%) but not in the Code type (20%), as 91% of lines of Code Comment are planning what to write in the following Code lines.</li>
-                      <li>S2PRM exhibits in-domain and cross-domain generalization ability and scoring position generalization but faces challenges in length generalization.</li>
-                      <li>Training models with data from multiple domains can enhance their performance and capabilities.</li>
+                        <li>The dataset construction cost of S2PRM demonstrates construct cost predictable and
+                            sample efficiency, as
+                            we only use almost 60% inference resource compared to previous open-sourced works.
+                        </li>
+                        <li>In the Mathematics domain, 3.85% tokens (tokens in mathematical expressions)
+                            contribute 21.03% decision
+                            tokens.</li>
+                        <li>In the Code domain, most decision points occur in the Code Comment type (80%) but
+                            not in the Code type
+                            (20%), as 91% of lines of Code Comment are planning what to write in the following
+                            Code lines.</li>
+                        <li>S2PRM exhibits in-domain and cross-domain generalization ability and scoring
+                            position generalization but
+                            faces challenges in length generalization.</li>
+                        <li>Training models with data from multiple domains can enhance their performance and
+                            capabilities.</li>
                     </ul>
-                For more information, please refer to our paper.
+                    For more information, please refer to our paper.
                 </div>
             </div>
 
-            <div class="title">
-                BibTex
-            </div>
-            <div class="bibContent">
-                <p class="bibLine">@article{park2021nerfies</p>
-                  <p class="bibLine">  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},</p>
-                  <p class="bibLine">title     = {Nerfies: Deformable Neural Radiance Fields},</p>  
-                  <p class="bibLine">journal   = {ICCV},</p>  
-                  <p class="bibLine">year      = {2021},</p>  
-                  <p class="bibLine">}</p>
-            </div>
         </div>
-        
-        <div class="divcontent">
-            <div class="title">
-                Acknowledgment
+    </div>
+    <div class="whiitediv is-centered">
+        <div class="width60">
+            <h2 class="titleh2-left">BibTex</h2>
+            <div class="mytext">
+                <pre style="text-align:left;margin:0; padding:0;">
+                                <code style="margin:0; padding:0; white-space: pre;">
+    @article{park2021nerfies,
+             author = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz,Steven M. and Martin-Brualla, Ricardo},
+             title = {Nerfies: Deformable Neural Radiance Fields},
+             journal = {ICCV},
+             year = {2021},
+             }
+                                            </code>
+                                        </pre>
             </div>
-            <div class="papercontent">
-                <div class="text">
-                We sincerely thank Zilin Zhu for providing valuable suggestions on efficiency optimizations of
+
+        </div>
+    </div>
+    <div class="graydiv is-centered">
+        <div class="width60">
+            <h2 class="titleh2-left">Acknowledgements</h2>
+            <div class="mytext">
+                We sincerely thank Zilin Zhu for providing valuable suggestions on efficiency optimizations
+                of
                 our code and Di Yang for his advice during the completion
                 of the work.
-                </div>
             </div>
-            
+
         </div>
-        
     </div>
+
 </body>
 
-<link rel="stylesheet" href="../css/content.css">
+</html>
