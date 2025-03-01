@@ -240,32 +240,7 @@
                 \end{equation}
                 where \( s_i \) is the token selected as the optimal choice for the low-confidence decoding position, and \( R^\theta(\cdot) \) represents the score given by the PRM.
             </div>
-            <div class="title-little">
-                4. PRM Guided Inference
-            </div>
-            <div class="mytext">
-                The PGI evaluation strategy leverages the well-trained PRM to enhance token selection during
-                decoding.
-                Specifically, when the model encounters a low-confidence position in the decoding sequence,
-                it
-                triggers the
-                PRM
-                to evaluate the top $M$ candidate tokens $y_t^*=\{y_1',y_2',\dots,y_M'\}$.
-
-                Among these candidates, the PRM selects the token it considers the best based on its learned
-                reward
-                estimation
-                mechanism:
-
-                \begin{equation}
-                y_t=\arg \max _{y_k' \in y_t^*} R\left(X, y_{&lt;t},y_k'\right),
-                \end{equation}
-                , where $y_t$ is the token selected as the optimal choice for decoding position $t$, and
-                $R(*)$
-                represents
-                the
-                PRM rewarding process.
-            </div>
+           
         </div>
     </div>
     <div class="whiitediv is-centered">
