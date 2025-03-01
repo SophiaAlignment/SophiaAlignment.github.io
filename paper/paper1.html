@@ -180,6 +180,14 @@
             </div>
                     
             <div class="mytext">
+                Where we use $ \( s_i^n \) $ and $ \( s_{<i}^n \) $ to denote the \( i \)-th token and the tokens prior to the \( i \)-th token in the response respectively. 
+                Low model confidence at the \( i \)-th token indicates that the model is hard to determine the token selection at the \( i \)-th position, 
+                and therefore this position may become the starting point of a new reasoning step.
+                <br>
+                According to the above procedure, we divide the response \( s^n \) into \( K \) reasoning steps \( s^n = \{r_1, r_2, \ldots, r_K\} \) 
+                where the last token within each reasoning step is associated with below-the-threshold model confidence.
+                <br>
+                
                 Each element of $l_i$ represents the unnormalized score for a
                 candidate token in the vocabulary. The probability of generating token $y_i$
                 , given the input X and previously generated
