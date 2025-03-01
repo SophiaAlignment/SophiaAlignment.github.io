@@ -214,17 +214,15 @@
                 1, & \exists j \in [J], \{r_1, ..., r_k, t_j\} \text{ is correct} \\ 
                 0, & \text{otherwise} 
                 \end{cases}
-                \label{equ:confidence}
                 \end{equation}
                 $$
                 With the target rewards estimated based on the rollouts, we can train PRM using the following loss:
                 $$
                 \begin{equation}
-                \text{C}_{y_i} = \exp{(\log p(y_i | X, y_{&lt;i}))},
-                \label{equ:confidence}
+                \mathcal{L}_{PRM}^\theta = \sum_{k=1}^{K} r_k^e \log r_k^\theta + (1 - r_k^e) \log(1 - r_k^\theta),
                 \end{equation}
                 $$
-
+                where \( r_k^e \) is the target reward and \( r_k^\theta := R^\theta(p, r_1, \cdots, r_k) \) denotes the reward predicted by the PRM \( R^\theta \).
             </div>
             <div class="mytext">
                 We define a confidence threshold $\tau$ to select these delimited
