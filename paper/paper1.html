@@ -191,13 +191,8 @@
                 2. PRM Training
             </div>
             <div class="mytext" style="width: 100%;">
-                The entire output sequence Y can be partitioned into K
-                steps:
-                $$
-                \begin{equation}
-                \mathbf{Y}=\bigcup_{k=1}^K s_k, \nonumber
-                \end{equation}
-                $$
+                To train a PRM based on the question-response pairs with divided reasoning steps, 
+                we first need to estimate the target reward for each reasoning step and then train a PRM that can predict the reward.
             </div>
             <div class="mytext">
                 where each step $s_k = \{ y_{r_{k-1}}, \dots, y_{r_k}\}$ is a contiguous subsequence of
