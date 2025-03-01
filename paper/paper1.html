@@ -123,41 +123,31 @@
             <h2 class="titleh2-left">Method Overview</h2>
             <img alt="" src="static/images/figure-method-main_01.png" class="myimages">
             <div class="mytext">
-                Method overview.a) <strong>S<sup>2</sup>PRM Training Data Construction Pipeline.</strong> ①:
-                Sampling from the
-                dataset of a
-                certain domain and getting confidence and samples for the training dataset; ②: Gathering the
-                confidence distribution
-                of all samples and getting threshold that divides the distribution into steps of 2% of the
-                token numbers; ③:
-                Dividing
-                reasoning steps by threshold and labeling steps by rollout. <strong>b) the difference
-                    between hard and soft step
-                    division.</strong>
-                <font color="blue">Hard-step</font> corresponds to dividing the reasoning process by
-                pre-defined symbols (e.g., the
-                line break in the figure),
-                while <font color="red">soft-steps</font> are determined by inference model judgment. We
-                find that the model is
-                likely to perform soft step
-                segmentation within mathematical expressions, select variables or pronouns, and determine
-                the final answer. We
-                annotated the confidence score during model inference at division positions, where lower
-                confidence indicates that
-                the model finds it hard to decide.
+                Method overview.<strong>a) ASPRM Training Data Construction Pipeline.</strong> 
+                Step 1: Sample from the dataset of a given domain, collecting confidence scores and samples for the training data. 
+                Then, accumulate the confidence distribution of all samples and determine the threshold. 
+                Step 2: Divide reasoning steps based on the threshold and label the steps using rollout. 
+                <strong>b) The difference between Rule-based method and AdaptiveStep division.</strong>
+                The <font color="blue">Rule-based method</font> divides the reasoning process using predefined symbols or fixed token counts 
+                (e.g., line breaks, as shown in the figure), 
+                while <font color="red">AdaptiveStep</font> divides reasoning steps based on model confidence. 
+                We observe that the model tends to divide reasoning steps at key decision points, 
+                such as within mathematical expressions, at noun selections, and when determining the final answer. In contrast, 
+                we find that the confidence at line breaks is particularly high.
             </div>
             <img alt="" src="static/images/figure-method-PGI_00.png" class="myimages">
             <div class="mytext">
-                Method overview.b) We illustrate PGI by a simple example, the green token denotes the
-                selected tokens, whereas the
-                gray
-                token indicate the tokens that were not selected. The question is 3 * ( 1 + 1 ) = ?, and the
-                output should be 6; in
-                this case, the task model exhibits low confidence (where Cy < τ ) when calculating the answer of 1 + 1,
-                    and then determine which number to plus with 3, PRM should select the best token it judges to get
-                    the correct final answer. </div>
+                Method overview.We illustrate <strong>Token-level Value-guided Decoding (TVD)</strong> with a simple example.
+                The <font color="green">green token</font> denotes the selected tokens, 
+                while the <font color="gray">gray token</font> indicates the tokens that were not selected.
+                The question is 3 * ( 1 + 1 ) = ?, and the correct output is 6. 
+                In this case, the model exhibits low confidence (where Cy < τ ) 
+                when calculating the result of 1+1, and subsequently determines which number to multiply by 3. 
+                The PRM should select the best token based on its judgment to arrive at the correct final answer. 
+                As shown in the top-left corner, for each token, the middle box represents the token itself, 
+                the bottom box shows the predicted confidence, and the box on the right displays the PRM score. 
+                The <font color="red">red confidence score</font> indicates that the confidence of the Top-1 predicted candidate is lower than the threshold.
             </div>
-
         </div>
     </div>
     <div class="graydiv is-centered">
