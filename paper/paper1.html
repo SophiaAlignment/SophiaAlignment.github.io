@@ -195,25 +195,35 @@
                 we first need to estimate the target reward for each reasoning step and then train a PRM that can predict the reward.
             </div>
             <div class="mytext">
-                where each step $s_k = \{ y_{r_{k-1}}, \dots, y_{r_k}\}$ is a contiguous subsequence of
-                tokens, and
-                rs are
-                division points. To divide the
-                answer into a step-by-step format, we follow the calculation
-                method of model confidence (Hills & Anadkat, 2024) using
-                the following equation:
+                To estimate the target reward, we mainly follow the heuristic rollout method proposed by Wang et al (2024a). 
+                We rollout the response generation process \( J \) times starting from each reasoning step, 
+                resulting in rollouts denoted as \( \{p, r_1, \ldots, r_k, t_j\}_{k \in [K], j \in [J]} \), 
+                where \( t_j \) is the \( j \)-th trajectory starting from a partial response.
+                <br>
+                Then, we estimate the target reward of this step based on the correctness of any decoded solution. 
+                We use hard estimation (HE) to estimate the reward for step the rk. 
+                HE indicates whether any of the responses starting from the current partial response can reach a correct answer. 
+                For our implementation, in the code generation tasks, we define correctness as whether the solution can pass all test cases; 
+                in the math reasoning tasks, we define correctness as whether the answer matches the ground truth. 
+                Formally, the target reward can be estimated as
+                <br>
+                $$
+                \begin{equation}
+                r_k^e = 
+                \begin{cases} 
+                1, & \exists j \in [J], \{r_1, ..., r_k, t_j\} \text{ is correct} \\ 
+                0, & \text{otherwise} 
+                \end{cases}
+                \label{equ:confidence}
+                \end{equation}
+                $$
+                With the target rewards estimated based on the rollouts, we can train PRM using the following loss:
                 $$
                 \begin{equation}
                 \text{C}_{y_i} = \exp{(\log p(y_i | X, y_{&lt;i}))},
                 \label{equ:confidence}
                 \end{equation}
                 $$
-                which is numerically equal to the predicted token probability,
-                where y&lt;i represents the preceding tokens. Tokens with
-                low confidence values are identified as delimited tokens,
-                representing the start of new step sequences. At the position
-                of each delimited token, we then perform N rollouts to
-                assess the quality of the current token sequence.
 
             </div>
             <div class="mytext">
