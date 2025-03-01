@@ -182,39 +182,11 @@
                 Low model confidence at the $ i $-th token indicates that the model is hard to determine the token selection at the $ i $-th position, 
                 and therefore this position may become the starting point of a new reasoning step.
                 <br>
+                
                 According to the above procedure, we divide the response \( s^n \) into \( K \) reasoning steps \( s^n = \{r_1, r_2, \ldots, r_K\} \) 
                 where the last token within each reasoning step is associated with below-the-threshold model confidence.
-                <br>
-                
-                Each element of $l_i$ represents the unnormalized score for a
-                candidate token in the vocabulary. The probability of generating token $y_i$
-                , given the input X and previously generated
-                tokens y&lt;i, is computed using the softmax function:
-
-                \begin{align}
-                p\left(y_{i} \mid X, y_{&lt;i}\right) & = \frac{\exp \left(\mathbf{l}_{i,
-                y_{i}}\right)}{\sum_{y^{\prime}
-                \in
-                \mathcal{V}} \exp \left(\mathbf{l}_{i, y^{\prime}}\right)}
-                \end{align}
-
-                where $l_{i,{y_i}}$
-                is the logits value corresponding to token $y_i$ and
-                V is the vocabulary.
             </div>
-            <div class="text" style="width: 100%;">
-                The predicted token $y_i$
-                is determined by selecting the token
-                with the highest probability:
-
-            </div>
-            <div>
-                $$
-                \begin{equation}
-                y_i=\arg \max _{y_i} p\left(y_i \mid X, y_{&lt;i}\right) \nonumber
-                \end{equation}
-                $$
-            </div>
+        
             <div class="title-little">
                 2. PRM Training
             </div>
