@@ -195,7 +195,7 @@
                 we first need to estimate the target reward for each reasoning step and then train a PRM that can predict the reward.
             </div>
             <div class="mytext">
-                To estimate the target reward, we mainly follow the heuristic rollout method proposed by Wang et al (2024a). 
+                To estimate the target reward, we mainly follow the heuristic rollout method proposed by (Wang et al 2024a). 
                 We rollout the response generation process \( J \) times starting from each reasoning step, 
                 resulting in rollouts denoted as \( \{p, r_1, \ldots, r_k, t_j\}_{k \in [K], j \in [J]} \), 
                 where \( t_j \) is the \( j \)-th trajectory starting from a partial response.
@@ -224,55 +224,21 @@
                 $$
                 where \( r_k^e \) is the target reward and \( r_k^\theta := R^\theta(p, r_1, \cdots, r_k) \) denotes the reward predicted by the PRM \( R^\theta \).
             </div>
-            <div class="mytext">
-                We define a confidence threshold $\tau$ to select these delimited
-                tokens with low confidence. Specifically, for a dataset, we
-                first compute the confidence value for each token of the
-                answer part in the samples. The threshold $\tau$ is determined
-                as a specific percentile of the confidence distribution across
-                the dataset, ensuring an average of K − 1 steps for each
-                sample divided by delimiter tokens. With the last step at the
-                end of the answer, each sample contains an average of K
-                steps.
-
-            </div>
+           
             <div class="title-little">
                 3. Token-level Value-guided Decoding
             </div>
             <div class="mytext">
-                For each step, we estimate the quality of individual steps in
-                an answer following the heuristic rollout methods proposed
-                by (Wang et al., 2024).
+                The TVD strategy leverages the PRM to guide token selection during language model decoding. Specifically, 
+                when the model encounters a low confidence score (Top-1 probability \( c_p < \tau \)) in decoding, 
+                it triggers the PRM to evaluate the tokens associated with the highest \( M \) probability given by the policy model \( \pi \): \( \mathbf{s}_i^* = \{s_i^1, s_i^2, \ldots, s_i^M\} \).
             </div>
             <div class="mytext">
-                During the rollout phase, we generate $N$ reasoning processes starting from step $s_i$,
-                denoted as
-                $\left\{s_i,
-                T_j\right\}^N_{j=1}$, where $T_j$ is the rollouted $j$-th solution with the previous
-                sequence $s_i$.
-                Then, we estimate the reward of this step based on the correctness of all decoded solutions.
-                We use
-                hard
-                estimation (HE) to estimate the reward for step $s_k$, which shows whether the current
-                inference
-                sequence
-                can
-                reach the correct answer. For example, in the Code domain, correct means the generated code
-                can pass
-                all the
-                test cases; in the Mathematics domain, it means the final answer matches the ground truth:
-
-
+                Among these candidates, the PRM selects the token it considers the best based on its learned reward estimation mechanism:
                 \begin{equation}
-                % y_{s_k}^{H E}= \mathbb I \left(\exists o_j \in O \mid o_j \text { is correct }\right)
-                y_{s_k}^{HE}=\left\{
-                \begin{aligned}
-                1 & & \exists t_j \in T, t_j \text { is correct } \\
-                0 & & \mathrm{Otherwise} \\
-                \end{aligned}
-                \right.
-                \label{eqa:HE}
+                s_i = \arg\max_{s_i^m \in s_i^*} R^\theta\left(p, s_{&lt;i}, s_i^m\right),
                 \end{equation}
+                where \( s_i \) is the token selected as the optimal choice for the low-confidence decoding position, and \( R^\theta(\cdot) \) represents the score given by the PRM.
             </div>
             <div class="title-little">
                 4. PRM Guided Inference
