@@ -165,7 +165,7 @@
                 Given a question $ q \in Q $, we can generate $ N $ responses with temperature-based random sampling using the language model \( \pi \). 
                 We denote generated responses as $ \{s^1, s^2, \cdots, s^N\} $ with \( s^n \in S \). 
                 (For ease of notation, we omit the dependence of the response $ s^n $ on $ q $.) In this way, we obtain a set of question-response pairs $ (Q \times S) $.
-                
+                <br>
                 To divide the responses into reasoning steps, we use the probability of the sampled token as the metric for model confidence. 
                 Then we determine a threshold $ \tau $, which is based on a certain proportion of the token count, 
                 such that the tokens below this threshold become a breaking point.
