@@ -266,54 +266,22 @@
                 ASPRM-D demonstrates superior judgment ability. 
                 As N increases, the robustness of ASPRM-D outperforms that of ORM.
             </div>
-            <div class="pic-box1">
-                <div class="picinbox">
-                    <img alt="" src="static/images/figure-GSM8k_bon_candidates_llama_traindatamistral.png"
-                        style="width: 83%;">
-                    <span>(a)</span>
-                </div>
-                <div class="picinbox">
-                    <img alt="" src="static/images/figure-GSM8k_bon_candidates_mistral_traindatamistral.png"
-                        style="width: 95%;">
-                    <span>(b)</span>
-                </div>
-                <div class="picinbox">
-                    <img alt="" src="static/images/figure-MATH500_bon_candidates_llama_traindatamistral.png"
-                        style="width: 95%;">
-                    <span>(c)</span>
-                </div>
-                <div class="picinbox">
-                    <img alt="" src="static/images/figure-MATH500_bon_candidates_mistral_traindatamistral.png"
-                        style="width: 95%;">
-                    <span>(d)</span>
-                </div>
-            </div>
+            <img alt="" src="static/images/figure-bon-candidates_00.png" class="myimages">
             <div class="mytext">
-                Figure 4. BoN results for the Mathematics domain, for S<sup>2</sup>PRM, we use the Mistral
-                generated training
-                dataset to align with
-                ER-PRM to train Mistral (S<sup>2</sup>PRM-M) and Llama (S<sup>2</sup>PRM-L) and test all the
-                PRMs on (a)
-                MetaMath-Llama generated
-                GSM8k BoN candidates; (b) MetaMath-Mistral generated GSM8k BoN candidates; (c)
-                MetaMath-Llama generated
-                MATH500 BoN candidates, and (d) MetaMath-Mistral generated MATH500 BoN candidates.
+                Figure 4: BoN results for the math tasks. We evaluate all PRMs on: 
+                (a) MetaMath-Llama generated GSM8k candidate solutions; 
+                (b) MetaMath-Mistral generated GSM8k candidates; 
+                (c) MetaMath-Llama generated MATH500 candidates; and 
+                (d) MetaMath-Mistral generated MATH500 candidates. 
+                The ”-L” and ”-M” suffixes denote the base models (Llama and Mistral, respectively). 
+                We report the evaluation results based on the released versions of other works.
 
-                <div class="pic-box1">
-                    <div class="picinbox">
-                        <img alt="" src="static/images/figure-LCT_bon_candidates_ds.png" style="width: 60%;">
-                        <span>(a)</span>
-                    </div>
-                    <div class="picinbox">
-                        <img alt="" src="static/images/figure-LCB_bon_candidates_ds.png" style="width: 60%;">
-                        <span>(b)</span>
-                    </div>
-                </div>
+                <img alt="" src="static/images/figure-bon-candidates-code_00.png" class="myimages">
+                
                 <div class="mytext">
-                    Figure 5. BoN results for the Code domain, we test S2PRMD and a Code-ORM (ORM-D) on (a)
-                    DeepSeek-SFT generated
-                    LeetCoTE BoN candidates; (b) DeepSeek-SFT generated LiveCodeBench BoN candidates.
-
+                    Figure 5: BoN results for the code datasets, we test ASPRMD and a Code-ORM (ORM-D) on 
+                    (a) LCD-DS generated LeetCodeDataset BoN candidates; 
+                    (b) LCD-DS generated LiveCodeBench BoN candidates.
                 </div>
                 <div class="title-little">
                     2. PRM Guided Inference Results
