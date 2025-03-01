@@ -172,13 +172,13 @@
                 Specifically, the model confidence can be written as
                 $$
                 \begin{equation}
-                \( c_{s_i^n} = p(s_i^n \mid \pi, q, s_{<i}^n) \)
+                c_{s_i^n} = p(s_i^n \mid \pi, q, s_{&lt;i}^n)
                 \end{equation}
                 $$
             </div>
                     
             <div class="mytext">
-                Where we use $ s_i^n $ and $ s_{\<i}^n $ to denote the $ i $-th token and the tokens prior to the $ i $-th token in the response respectively. 
+                Where we use $ s_i^n $ and $ s_{&lt;i}^n $ to denote the $ i $-th token and the tokens prior to the $ i $-th token in the response respectively. 
                 Low model confidence at the $ i $-th token indicates that the model is hard to determine the token selection at the $ i $-th position, 
                 and therefore this position may become the starting point of a new reasoning step.
                 <br>
