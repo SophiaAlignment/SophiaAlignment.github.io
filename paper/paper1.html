@@ -98,29 +98,20 @@
         <div class="width60">
             <h2 class="titleh2">Abstract</h2>
             <div class="mytext">
-                Process Reward Models (PRMs) have emerged as
-                an effective method to enhance the multi-step reasoning abilities of large language models
-                (LLMs).
-                Existing PRMs typically divide the response into
-                multiple reasoning steps using pre-defined placeholder tokens. However, this approach
-                ignores
-                that the true decision points are usually not associated with specific words or markers in
-                text.
-                Accordingly, we propose a model-defined reasoning step dividing method, which contrasts with
-                human-defined hard division strategies, with the
-                trained PRM named S<sup>2</sup>PRM (Soft-step Process
-                Reward Model) This approach not only enables
-                precise process rewards at model-critical reasoning positions but also improves sample
-                efficiency
-                and reduces PRMs’ training costs. Furthermore,
-                this method is low-cost and can easily be extended
-                to other reasoning tasks, such as code generation.
-                Our experimental results demonstrate that our
-                model achieves state-of-the-art Best-of-N performance. Additionally, we provide a
-                comprehensive
-                analysis and case study on both the performance
-                and generalization capability of our method. For
-                ease of reimplementation, our checkpoints, data and code
+                Current approaches for training Process Reward Models (PRMs) often involve breaking down responses 
+                into multiple reasoning steps using rule-based techniques, 
+                such as using predefined placeholder tokens or setting the reasoning step’s length into a fixed size. 
+                These approaches overlook the fact that specific words do not typically mark true decision points in a text. 
+                To address this, we propose AdaptiveStep, a method that divides reasoning steps based on the model’s confidence in predicting the next word. 
+                This division method provides more decision-making information at each step, 
+                enhancing downstream tasks, such as reward model learning. 
+                Moreover, our method does not require manual annotation. 
+                We demonstrate its effectiveness through experiments with AdaptiveStep-trained PRMs in mathematical reasoning and code generation tasks. 
+                Experimental results indicate that the outcome PRM achieves state-of-the-art Best-of-N performance, 
+                surpassing greedy search strategy with token-level value-guided decoding, 
+                while also reducing construction costs by over 30% compared to existing open-source PRMs. 
+                In addition, we provide a thorough analysis and case study on the PRM’s performance, transferability, and generalization capabilities.
+                For ease of reimplementation, our checkpoints, data and code
                 are available at
                 <a class="link" href="https://sophiaalignment.github.io/release/">Release</a>.
             </div>
