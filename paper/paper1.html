@@ -154,29 +154,30 @@
         <div class="width60">
             <h2 class="titleh2-left">Method</h2>
             <div class="mytext">
-                In this section, we first introduce the preliminaries of the language model inference
-                process, then
-                illustrate
-                our method
-                that divides the reasoning process and estimates the reward.
-                Finally, we illustrate the proposed PRM-guided inference.
+                In this section, we first introduce how AdaptiveStep divides responses into reasoning steps, 
+                and then present how a PRM can be trained on these data. 
+                At last, we introduce Token-level Value-guided Decoding (TVD) that can get better responses using the trained PRM.
             </div>
             <div class="title-little">
-                1. Preliminaries
+                1. AdaptiveStep
             </div>
             <div class="mytext">
-                Let $\phi$ denote the neural network function that maps the
-                input sequence X and previously generated tokens $y_{&lt;i}$ =
-                ($y_1$, $y_2$, . . . , $y_i$−1) to the logits vector $l_i$ for predicting the
-                next token $y_i$
-                , $l_i$ ∈ R<sup>|V|</sup> where |V| is the vocabulary size:
+                Given a question $ q \in Q $, we can generate $ N $ responses with temperature-based random sampling using the language model \( \pi \). 
+                We denote generated responses as $ \{s^1, s^2, \cdots, s^N\} $ with \( s^n \in S \). 
+                (For ease of notation, we omit the dependence of the response $ s^n $ on $ q $.) In this way, we obtain a set of question-response pairs $ (Q \times S) $.
+                
+                To divide the responses into reasoning steps, we use the probability of the sampled token as the metric for model confidence. 
+                Then we determine a threshold $ \tau $, which is based on a certain proportion of the token count, 
+                such that the tokens below this threshold become a breaking point.
+                Specifically, the model confidence can be written as
+                
             </div>
             <div class="mytext">
                 \begin{equation}
-                \mathbf{l}_i=\phi\left(X, y_{&lt;i}\right) \nonumber
+                c_{s_i^n} = p(s_i^n | \pi, q, s_{<i}^n)
                 \end{equation}
-
             </div>
+                    
             <div class="mytext">
                 Each element of $l_i$ represents the unnormalized score for a
                 candidate token in the vocabulary. The probability of generating token $y_i$
@@ -208,7 +209,7 @@
                 $$
             </div>
             <div class="title-little">
-                2. Soft Step Division
+                2. PRM Training
             </div>
             <div class="mytext" style="width: 100%;">
                 The entire output sequence Y can be partitioned into K
@@ -254,7 +255,7 @@
 
             </div>
             <div class="title-little">
-                3. Reward Estimation
+                3. Token-level Value-guided Decoding
             </div>
             <div class="mytext">
                 For each step, we estimate the quality of individual steps in
