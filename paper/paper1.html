@@ -250,34 +250,21 @@
                 1. Best of N Evaluation Results
             </div>
             <div class="mytext">
-                <strong>We show the Mathematics domain BoN evaluation results in Figure 4 and the Code
-                    domain BoN evaluation results
-                    in Figure 5.</strong>
-                In the Mathematics domain, we find that S<sup>2</sup>PRM-L performs best across Figure 4a,
-                4b and 4d. However, the
-                performance of S<sup>2</sup>PRM-M is generally the worst among all
-                the experiments, and we attribute this to the following factors: the <strong>base
-                    model</strong>, the <strong>data
-                    sources for construction</strong>,
-                and the <strong>costs and models for construction</strong>. 1) For the
-                base model, S<sup>2</sup>PRM-M uses Mistral, which is less capable
-                than Llama, resulting in poorer performance compared to
-                ER-PRM. 2) For the data sources, S<sup>2</sup>PRM only utilizes the
-                GSM8k and MATH training sets during training data construction, while both ER-PRM and
-                Math-Shepherd use the
-                MATH test set (without using MATH500), which results
-                in our performance being inferior to theirs on MATH500.
-                3) For the costs and models used in construction, the data
-                construction costs for S<sup>2</sup>PRM is approximately 60% of that
-                for the other two methods and only used a single construct
-                model, we will discuss our sample efficiency feature in
-                the next section. Additionally, Math-Shepherd performs
-                an extra epoch of training on the MetaMath model using
-                the GSM8k and MATH training sets before generating its
-                PRM training data, a step we did not follow. This could be
-                considered a data construction trick, contributing to their
-                better performance. In the two datasets of the Code domain, S<sup>2</sup>PRM-D demonstrates better judging
-                capabilities, and as the number of candidates increases, the robustness of S<sup>2</sup>PRM-D is superior to that of the ORM.
+                <strong>We report the BoN evaluation results for the math dataset in Figure 4, and for the code dataset in Figure 5, respectively.</strong>
+                In the math tasks, ASPRM-L performs best across Figure 4(a), 4(b) and 4(d) despite under more stringent conditions: the training data sources, 
+                and the construction costs and models. 1) For <strong>the training data sources</strong>,  
+                ASPRM only utilizes the GSM8k and MATH training sets during training data construction, 
+                while both ER-PRM and Math-Shepherd used the MATH test set (without using MATH500), 
+                which results in our performance being inferior to theirs on MATH500. 
+                2) For <strong>the costs and models used in construction</strong>strong>, 
+                the data construction costs for ASPRM is less than 70% of that for the other two methods and only used a single construct model. 
+                In addition to the above problems that lead ASPRM-M to poor performance in the MATH500 dataset, 
+                we attribute its performance in Figure 4(a) to the training dataset is constructed by a single model, 
+                constrained its test-time transferability.
+                <br>
+                In the code tasks results shown in Figure 5, 
+                ASPRM-D demonstrates superior judgment ability. 
+                As N increases, the robustness of ASPRM-D outperforms that of ORM.
             </div>
             <div class="pic-box1">
                 <div class="picinbox">
