@@ -284,41 +284,30 @@
                     (b) LCD-DS generated LiveCodeBench BoN candidates.
                 </div>
                 <div class="title-little">
-                    2. PRM Guided Inference Results
-
+                    2. Token-level Value-guided Decoding Results
                 </div>
                 <div class="mytext">
-                    We report PGI results in Table 1 and Table 2. In the Mathematics domain,
-                    S<sup>2</sup>PRM has consistently shown
-                    an ability
-                    to enhance the reasoning capacity of the inference models,
-                    while ER-PRM and Math-Shepherd do not have a positive
-                    effect on the reasoning process on the GSM8k testset. The
-                    results suggest that the judgment accuracy of S<sup>2</sup>PRM surpasses that of other
-                    PRMs. Especially on
-                    GSM8k, where
-                    the performance of greedy search is already well, its performance further demonstrates
-                    the accuracy of the
-                    token-level
-                    judgment. In the Code domain, S<sup>2</sup>PRM has also achieved
-                    results surpassing those of greedy search by guiding the
-                    reasoning model with accurate judgment.
+                    We report TVD results in Table 1. 
+                    In the math reasoning task, 
+                    ASPRM has consistently shown an ability to enhance the reasoning capacity of the inference models. 
+                    While the performance guided by ER-PRM and Math-Shepherd does not always demonstrate improvement, 
+                    we hypothesize this is due to that the inference models already perform well with the greedy search on GSM8k, 
+                    needing a more precise score to provide better guidance.
                 </div>
 
             </div>
-            <img alt="" src="static/images/table1.png" style="width: 90%;">
+            <img alt="" src="static/images/table1_00.png" style="width: 90%;">
             <div class="mytext">
-                Table 1: Mathematics domain PRM Guided Inference results. Acc@1 refers to the inference
-                model’s greedy search
-                performance. S<sup>2</sup>PRM-L represents Mathematics PRM based on Llama,
-                S<sup>2</sup>PRM-M represents Mathematics
-                PRM trained
-                based on Mistral.
+                Table 1: Token-level Value-guided Decoding results. 
+                A/P@1 refers to the inference model’s greedy search performance, 
+                we use Accuracy@1 for math tasks, 
+                and Pass@1 for code tasks as the metrics. 
+                 <font color="red"> ↑ </font> and <font color="green"> ↓ </font> represent the performance improvement or decline compared to A/P@1.
             </div>
-            <img alt="" src="static/images/table2.png" width="40%">
+
             <div class="mytext">
-                Table 2: Code domain PRM Guided Inference results.
-                Pass@1 refers to the greedy search performance of the inference model (DeepSeek-SFT).
+                The results further demonstrate the accuracy of the tokenlevel judgment of ASPRM. 
+                In the code generation task, ASPRM has also achieved results surpassing greedy search by providing accurate judgment.
             </div>
 
         </div>
